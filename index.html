@@ -506,6 +506,40 @@ body::after{
 .mob-biome{font-size:0.72rem;color:var(--muted);margin-top:8px;line-height:1.4}
 .mob-drop{font-size:0.7rem;color:var(--muted);margin-top:6px;line-height:1.4}
 
+/* ======= MOB SCENE GALLERY ======= */
+.mob-scene-card{
+  background:rgba(0,0,0,0.3);
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  transition:all 0.22s;
+  position:relative;
+}
+.mob-scene-card:hover{
+  border-color:rgba(46,204,113,0.4);
+  transform:translateY(-3px);
+  box-shadow:0 12px 36px rgba(0,0,0,0.5);
+}
+.mob-scene-card img{
+  width:100%;
+  height:160px;
+  object-fit:contain;
+  background:rgba(0,0,0,0.45);
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+  display:block;
+  padding:12px;
+}
+.mob-scene-label{
+  padding:8px 12px;
+  font-size:0.78rem;
+  font-weight:700;
+  color:var(--text);
+  background:rgba(0,0,0,0.4);
+  border-top:1px solid var(--border);
+  letter-spacing:0.3px;
+}
+
 /* ======= GENERATORS ======= */
 .gen-tabs{
   display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;
@@ -994,97 +1028,19 @@ input[type="range"]{
 .btn-export:disabled{opacity:0.3;cursor:not-allowed}
 
 
-/* ======= YOUTUBERS ======= */
-.youtubers-section {
-  padding: 60px 24px 80px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.youtubers-title {
-  font-size: 1.6rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
-}
-.youtubers-sub {
-  color: var(--muted);
-  font-size: 0.9rem;
-  margin-bottom: 40px;
-}
-.youtubers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 24px;
-}
-.youtuber-card {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px 20px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: all 0.25s;
-  cursor: pointer;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
-.youtuber-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(46,204,113,0.07), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-.youtuber-card:hover {
-  border-color: rgba(46,204,113,0.35);
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-}
-.youtuber-card:hover::before { opacity: 1; }
-.youtuber-head-wrap {
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  image-rendering: pixelated;
-  background: transparent;
-  flex-shrink: 0;
-}
-.youtuber-head-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  display: block;
-  background: transparent;
-}
-.youtuber-name {
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 6px;
-  letter-spacing: -0.3px;
-}
-.youtuber-link {
-  font-size: 0.75rem;
-  color: var(--accent2);
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.youtuber-link::before {
-  content: '▶';
-  font-size: 0.6rem;
-  color: #ff0000;
-}
+.youtubers-section{padding:60px 24px 80px;max-width:1100px;margin:0 auto}
+.youtubers-title{font-size:1.6rem;font-weight:800;margin-bottom:8px;letter-spacing:-0.5px}
+.youtubers-sub{color:var(--muted);font-size:0.9rem;margin-bottom:40px}
+.youtubers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px}
+.youtuber-card{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:28px 20px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:all 0.25s;cursor:pointer;text-decoration:none;position:relative;overflow:hidden}
+.youtuber-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(46,204,113,0.07),transparent 70%);opacity:0;transition:opacity 0.3s;pointer-events:none}
+.youtuber-card:hover{border-color:rgba(46,204,113,0.35);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.45)}
+.youtuber-card:hover::before{opacity:1}
+.youtuber-head-wrap{width:80px;height:80px;border-radius:12px;overflow:hidden;margin-bottom:16px;image-rendering:pixelated;background:transparent;flex-shrink:0}
+.youtuber-head-wrap img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated;image-rendering:crisp-edges;display:block;background:transparent}
+.youtuber-name{font-size:1rem;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-0.3px}
+.youtuber-link{font-size:0.75rem;color:var(--accent2);font-weight:600;display:flex;align-items:center;gap:5px}
+.youtuber-link::before{content:'▶';font-size:0.6rem;color:#ff0000}
 </style>
 </head>
 <body>
@@ -1182,7 +1138,7 @@ input[type="range"]{
       </div>
       <div class="feat-card" onclick="showSec('commands',null)">
         <div class="feat-card-icon"><img src="https://minecraft.wiki/images/Debug_Stick_JE1_BE1.png" alt="Debug Stick" onerror="this.style.display='none'"></div>
-        <h3>Команды для сервера</h3>
+        <h3>Команды для майнкрафт</h3>
         <p>Полезные команды для администраторов: teleport, gamemode, gamerule, fill и другие</p>
         <span class="feat-card-tag">Справочник</span>
       </div>
@@ -1853,6 +1809,9 @@ input[type="range"]{
       <p>Каталог мобов с характеристиками, биомами и дропом</p>
     </div>
     <div class="sec-divider"></div>
+
+    <div class="sec-divider"></div>
+
     <div class="bar">
       <div class="bar-search"><span class="ico">🔍</span><input type="text" id="mob-q" placeholder="Поиск моба..." oninput="filterMobs()"></div>
       <div class="filter-btns">
@@ -1897,10 +1856,14 @@ input[type="range"]{
   <div class="sec-wrap">
     <div class="sec-header">
       <img class="sec-header-img" src="https://minecraft.wiki/images/Command_Block_(C)_JE2.png" alt="Chain Command Block">
-      <h1>🔧 Команды для сервера</h1>
-      <p>Полезные команды для администраторов. Нажми на команду — скопируется</p>
+      <h1>🔧 Команды для майнкрафт</h1>
+      <p>Полезные команды для игры. Нажми на команду — скопируется в буфер обмена</p>
     </div>
     <div class="sec-divider"></div>
+    <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+      <button class="fbtn active" id="cmd-tab-server" onclick="setCmdTab('server',this)" style="font-size:0.9rem;padding:10px 20px">🖥️ Для сервера</button>
+      <button class="fbtn" id="cmd-tab-survival" onclick="setCmdTab('survival',this)" style="font-size:0.9rem;padding:10px 20px">🌲 Для одиночного выживания</button>
+    </div>
     <div class="cmds-grid" id="cmds-grid"></div>
   </div>
 </div>
@@ -2611,48 +2574,74 @@ filterEnc();
 // ============================================================
 //  MOBS DATA
 // ============================================================
+const FW='https://static.wikia.nocookie.net/minecraft_gamepedia/images/';
 const MOBS_DATA = [
-  {name:'Крипер',id:'creeper',img:'Creeper.png',fb:'💣',type:'hostile',hp:20,atk:'45-49',drop:'Порох, Пластинка',biome:'Везде'},
-  {name:'Зомби',id:'zombie',img:'Zombie.png',fb:'🧟',type:'hostile',hp:20,atk:'3-7',drop:'Сырая плоть, Морковь',biome:'Везде'},
-  {name:'Скелет',id:'skeleton',img:'Skeleton.png',fb:'💀',type:'hostile',hp:20,atk:'3',drop:'Кости, Стрелы',biome:'Везде'},
-  {name:'Паук',id:'spider',img:'Spider.png',fb:'🕷️',type:'neutral',hp:16,atk:'2-4',drop:'Верёвка, Глаз паука',biome:'Везде'},
-  {name:'Эндермен',id:'enderman',img:'Enderman.png',fb:'🕴️',type:'neutral',hp:40,atk:'7-10',drop:'Жемчуг Края',biome:'Везде'},
-  {name:'Гаст',id:'ghast',img:'Ghast.png',fb:'👻',type:'hostile',hp:10,atk:'17-37',drop:'Слёзы гаста, Порох',biome:'Незер'},
-  {name:'Ведьма',id:'witch',img:'Witch.png',fb:'🧙',type:'hostile',hp:26,atk:'Зелья',drop:'Зелья, Крюк',biome:'Болото'},
-  {name:'Ифрит',id:'blaze',img:'Blaze.png',fb:'🔥',type:'hostile',hp:20,atk:'6',drop:'Стержень ифрита',biome:'Незер'},
-  {name:'Эндер-дракон',id:'ender_dragon',img:'Ender_Dragon.gif',fb:'🐉',type:'boss',hp:200,atk:'15',drop:'Яйцо дракона, 12000 XP',biome:'Край'},
-  {name:'Иссушитель',id:'wither',img:'Wither.png',fb:'💀',type:'boss',hp:300,atk:'15',drop:'Звезда Незера',biome:'Везде'},
-  {name:'Хранитель',id:'warden',img:'Warden.png',fb:'🌑',type:'hostile',hp:500,atk:'30',drop:'Диск-фрагмент',biome:'Глубины'},
-  {name:'Старший страж',id:'elder_guardian',img:'Elder_Guardian.png',fb:'👁️',type:'hostile',hp:80,atk:'10',drop:'Мокрая губка, Кристалл',biome:'Океан'},
-  {name:'Волк',id:'wolf',img:'Wolf.png',fb:'🐺',type:'neutral',hp:8,atk:'4',drop:'—',biome:'Тайга'},
-  {name:'Лошадь',id:'horse',img:'Horse.png',fb:'🐴',type:'passive',hp:15,atk:'—',drop:'Кожа',biome:'Равнины'},
-  {name:'Свинья',id:'pig',img:'Pig.png',fb:'🐷',type:'passive',hp:10,atk:'—',drop:'Свиная отбивная',biome:'Везде'},
-  {name:'Корова',id:'cow',img:'Cow.png',fb:'🐄',type:'passive',hp:10,atk:'—',drop:'Кожа, Говядина',biome:'Везде'},
-  {name:'Овца',id:'sheep',img:'Sheep.png',fb:'🐑',type:'passive',hp:8,atk:'—',drop:'Шерсть, Баранина',biome:'Везде'},
-  {name:'Курица',id:'chicken',img:'Chicken.png',fb:'🐔',type:'passive',hp:4,atk:'—',drop:'Перья, Куриное мясо',biome:'Везде'},
-  {name:'Крипер',id:'creeper',img:'Creeper.png',fb:'💣',type:'hostile',hp:20,atk:'43',drop:'Порох',biome:'Везде'},
-  {name:'Слизень',id:'slime',img:'Slime.png',fb:'💚',type:'hostile',hp:16,atk:'4',drop:'Слизь',biome:'Болото'},
-  {name:'Магм-куб',id:'magma_cube',img:'Magma_Cube.gif',fb:'🔴',type:'hostile',hp:16,atk:'6',drop:'Магм-крем',biome:'Незер'},
-  {name:'Утопленник',id:'drowned',img:'Drowned.png',fb:'🧟',type:'hostile',hp:20,atk:'5',drop:'Медь, Трезубец',biome:'Океан'},
-  {name:'Иссохший',id:'husk',img:'Husk.png',fb:'🏜️',type:'hostile',hp:20,atk:'4',drop:'Гнилая плоть',biome:'Пустыня'},
-  {name:'Пиглин',id:'piglin',img:'Piglin.png',fb:'🐷',type:'neutral',hp:16,atk:'5',drop:'Золотые предметы',biome:'Незер'},
-  {name:'Хоглин',id:'hoglin',img:'Hoglin.png',fb:'🐗',type:'hostile',hp:40,atk:'8',drop:'Сырое мясо',biome:'Незер'},
-  {name:'Страйдер',id:'strider',img:'Strider.png',fb:'🦎',type:'passive',hp:20,atk:'—',drop:'Нить',biome:'Незер'},
-  {name:'Фантом',id:'phantom',img:'Phantom.png',fb:'👁️',type:'hostile',hp:20,atk:'6',drop:'Мембрана фантома',biome:'Ночь'},
-  {name:'Пчела',id:'bee',img:'Bee.png',fb:'🐝',type:'neutral',hp:10,atk:'2',drop:'—',biome:'Луга'},
-  {name:'Аксолотль',id:'axolotl',img:'Axolotl.png',fb:'🦎',type:'passive',hp:14,atk:'—',drop:'—',biome:'Известняк'},
-  {name:'Лиса',id:'fox',img:'Fox.png',fb:'🦊',type:'passive',hp:10,atk:'—',drop:'Ягоды',biome:'Тайга'},
-  {name:'Панда',id:'panda',img:'Panda.png',fb:'🐼',type:'neutral',hp:20,atk:'6',drop:'Бамбук',biome:'Джунгли'},
-  {name:'Верблюд',id:'camel',img:'Camel.png',fb:'🐪',type:'passive',hp:32,atk:'—',drop:'Кожа',biome:'Пустыня'},
-  {name:'Лягушка',id:'frog',img:'Frog.png',fb:'🐸',type:'passive',hp:10,atk:'—',drop:'Слизь лягушки',biome:'Болото'},
-  {name:'Аллай',id:'allay',img:'Allay.png',fb:'🔵',type:'passive',hp:20,atk:'—',drop:'—',biome:'Постройки'},
-  {name:'Кустарниковый дикобраз',id:'armadillo',img:'Armadillo.png',fb:'🦔',type:'passive',hp:12,atk:'—',drop:'Чешуя броненосца',biome:'Саванна'},
-  {name:'Разоритель',id:'ravager',img:'Ravager.png',fb:'🦬',type:'hostile',hp:100,atk:'18',drop:'Сёдла',biome:'Рейды'},
-  {name:'Призыватель',id:'evoker',img:'Evoker.png',fb:'🔮',type:'hostile',hp:24,atk:'Заклинания',drop:'Тотем бессмертия',biome:'Рейды'},
-  {name:'Вексы',id:'vex',img:'Vex.png',fb:'👿',type:'hostile',hp:14,atk:'5',drop:'—',biome:'Призыватель'},
-  {name:'Пиглин-брут',id:'piglin_brute',img:'Piglin_Brute.png',fb:'⚔️',type:'hostile',hp:50,atk:'13',drop:'Золотой топор',biome:'Твердыня'},
-  {name:'Тупик',id:'endermite',img:'Endermite.png',fb:'🟤',type:'hostile',hp:8,atk:'2',drop:'—',biome:'Край'},
-  {name:'Сильверфиш',id:'silverfish',img:'Silverfish.png',fb:'🐛',type:'hostile',hp:8,atk:'1',drop:'—',biome:'Горы'},
+  // ── ВРАЖДЕБНЫЕ ──────────────────────────────────────────────
+  {name:'Старший страж',id:'elder_guardian',img:FW+'a/a4/Elder_Guardian.png/revision/latest',fb:'👁️',type:'hostile',hp:80,atk:'10',drop:'Мокрая губка, Кристалл',biome:'Океан'},
+  {name:'Страж',id:'guardian',img:FW+'0/0c/Guardian_JE2_BE2.png/revision/latest',fb:'🐟',type:'hostile',hp:30,atk:'7',drop:'Рыба, Чернила',biome:'Океан'},
+  {name:'Слизень',id:'slime',img:FW+'d/dd/Slime_JE3_BE2.png/revision/latest',fb:'💚',type:'hostile',hp:16,atk:'4',drop:'Слизь',biome:'Болото'},
+  {name:'Магм-куб',id:'magma_cube',img:FW+'e/ed/Magma_Cube.png/revision/latest',fb:'🔴',type:'hostile',hp:16,atk:'6',drop:'Магм-крем',biome:'Незер'},
+  {name:'Утопленник',id:'drowned',img:FW+'5/57/Drowned.png/revision/latest',fb:'🧟',type:'hostile',hp:20,atk:'5',drop:'Медь, Трезубец',biome:'Океан'},
+  {name:'Иссохший',id:'husk',img:FW+'e/e4/Husk_JE2_BE2.png/revision/latest',fb:'🏜️',type:'hostile',hp:20,atk:'4',drop:'Гнилая плоть',biome:'Пустыня'},
+  {name:'Хоглин',id:'hoglin',img:FW+'4/41/Hoglin_JE3.png/revision/latest',fb:'🐗',type:'hostile',hp:40,atk:'8',drop:'Сырое мясо',biome:'Незер'},
+  {name:'Призыватель',id:'evoker',img:FW+'c/c1/Evoker_JE2.png/revision/latest',fb:'🔮',type:'hostile',hp:24,atk:'Заклинания',drop:'Тотем бессмертия',biome:'Рейды'},
+  {name:'Вексы',id:'vex',img:FW+'4/42/Vex_JE4.png/revision/latest',fb:'👿',type:'hostile',hp:14,atk:'5',drop:'—',biome:'Призыватель'},
+  {name:'Пиглин-брут',id:'piglin_brute',img:FW+'5/5b/Piglin_Brute.png/revision/latest',fb:'⚔️',type:'hostile',hp:50,atk:'13',drop:'Золотой топор',biome:'Твердыня'},
+  {name:'Тупик',id:'endermite',img:FW+'c/cf/Endermite.png/revision/latest',fb:'🟤',type:'hostile',hp:8,atk:'2',drop:'—',biome:'Край'},
+  {name:'Сильверфиш',id:'silverfish',img:FW+'b/b8/Silverfish_JE1_BE1.png/revision/latest',fb:'🐛',type:'hostile',hp:8,atk:'1',drop:'—',biome:'Горы'},
+  {name:'Заклинатель',id:'illusioner',img:FW+'a/a7/Illusioner.png/revision/latest',fb:'🎭',type:'hostile',hp:32,atk:'4',drop:'Лук',biome:'Рейды'},
+  {name:'Разбойник',id:'pillager',img:FW+'1/1b/Pillager_JE2.png/revision/latest',fb:'🏹',type:'hostile',hp:24,atk:'4',drop:'Арбалет',biome:'Равнины'},
+  {name:'Знаменосец',id:'vindicator',img:FW+'b/b7/Vindicator_JE3.png/revision/latest',fb:'🪓',type:'hostile',hp:24,atk:'13',drop:'Изумруд',biome:'Рейды'},
+  {name:'Зомби-житель',id:'zombie_villager',img:FW+'4/4e/Zombie_Villager.png/revision/latest',fb:'🧟',type:'hostile',hp:20,atk:'3',drop:'Гнилая плоть',biome:'Везде'},
+  {name:'Скелет иссохший',id:'wither_skeleton',img:FW+'c/cd/Wither_Skeleton.png/revision/latest',fb:'🖤',type:'hostile',hp:20,atk:'8',drop:'Кости, Голова иссушителя',biome:'Незер'},
+  {name:'Морозный скелет',id:'stray',img:FW+'3/38/Stray_JE2_BE4.png/revision/latest',fb:'❄️',type:'hostile',hp:20,atk:'3',drop:'Кости, Стрела замедления',biome:'Снег'},
+  {name:'Пещерный паук',id:'cave_spider',img:FW+'1/17/Cave_Spider_JE2_BE2.png/revision/latest',fb:'🕷️',type:'hostile',hp:12,atk:'2-3',drop:'Верёвка, Глаз паука',biome:'Шахты'},
+  {name:'Шалкер',id:'shulker',img:FW+'0/06/Shulker.png/revision/latest',fb:'📦',type:'hostile',hp:30,atk:'8',drop:'Панцирь шалкера',biome:'Край'},
+  {name:'Зоглин',id:'zoglin',img:FW+'e/e3/Zoglin.png/revision/latest',fb:'🐗',type:'hostile',hp:40,atk:'6',drop:'Гнилое мясо',biome:'Незер'},
+  // ── НЕЙТРАЛЬНЫЕ ─────────────────────────────────────────────
+  {name:'Волк',id:'wolf',img:FW+'c/c4/Wolf_JE2_BE2.png/revision/latest',fb:'🐺',type:'neutral',hp:8,atk:'4',drop:'—',biome:'Тайга'},
+  {name:'Пчела',id:'bee',img:FW+'5/56/Bee.png/revision/latest',fb:'🐝',type:'neutral',hp:10,atk:'2',drop:'—',biome:'Луга'},
+  {name:'Панда',id:'panda',img:FW+'d/dc/Panda_JE1_BE1.png/revision/latest',fb:'🐼',type:'neutral',hp:20,atk:'6',drop:'Бамбук',biome:'Джунгли'},
+  {name:'Полярный медведь',id:'polar_bear',img:FW+'7/78/Polar_Bear.png/revision/latest',fb:'🐻‍❄️',type:'neutral',hp:30,atk:'6',drop:'Треска, Лосось',biome:'Снег'},
+  {name:'Мул',id:'mule',img:FW+'e/e7/Mule.png/revision/latest',fb:'🐴',type:'neutral',hp:15,atk:'—',drop:'Кожа',biome:'Везде'},
+  {name:'Лама',id:'llama',img:FW+'4/43/Llama.png/revision/latest',fb:'🦙',type:'neutral',hp:15,atk:'1',drop:'Кожа, Шерсть',biome:'Горы'},
+  {name:'Дельфин',id:'dolphin',img:FW+'0/0b/Dolphin.png/revision/latest',fb:'🐬',type:'neutral',hp:10,atk:'3',drop:'Треска',biome:'Океан'},
+  {name:'Летучая мышь',id:'bat',img:FW+'c/c6/Bat_JE2_BE2.png/revision/latest',fb:'🦇',type:'neutral',hp:6,atk:'—',drop:'—',biome:'Пещеры'},
+  {name:'Зомби-пиглин',id:'zombified_piglin',img:FW+'5/54/Zombified_Piglin_JE9.png/revision/latest',fb:'🐷',type:'neutral',hp:20,atk:'9',drop:'Гнилая плоть, Золото',biome:'Незер'},
+  {name:'Странник',id:'wandering_trader',img:FW+'5/52/Wandering_Trader.png/revision/latest',fb:'🧳',type:'neutral',hp:20,atk:'—',drop:'Молочный бидон',biome:'Везде'},
+  {name:'Житель',id:'villager',img:FW+'3/3d/Farmer.png/revision/latest',fb:'🧑',type:'neutral',hp:20,atk:'—',drop:'—',biome:'Деревни'},
+  {name:'Снежный голем',id:'snow_golem',img:FW+'c/c2/Snow_Golem.png/revision/latest',fb:'☃️',type:'neutral',hp:4,atk:'0',drop:'Снежки',biome:'Везде'},
+  {name:'Снежный козёл',id:'goat',img:FW+'f/f8/Goat_JE1_BE1.png/revision/latest',fb:'🐐',type:'neutral',hp:10,atk:'2-9',drop:'Рог козла, Молоко',biome:'Горы'},
+  // ── ПАССИВНЫЕ ───────────────────────────────────────────────
+  {name:'Лошадь',id:'horse',img:FW+'8/86/White_Horse.png/revision/latest',fb:'🐴',type:'passive',hp:15,atk:'—',drop:'Кожа',biome:'Равнины'},
+  {name:'Свинья',id:'pig',img:FW+'1/1a/Pig_JE3_BE2.png/revision/latest',fb:'🐷',type:'passive',hp:10,atk:'—',drop:'Свиная отбивная',biome:'Везде'},
+  {name:'Корова',id:'cow',img:FW+'5/5e/Cow_JE5_BE2.png/revision/latest',fb:'🐄',type:'passive',hp:10,atk:'—',drop:'Кожа, Говядина',biome:'Везде'},
+  {name:'Овца',id:'sheep',img:FW+'e/e2/White_Sheep_JE3_BE6.png/revision/latest',fb:'🐑',type:'passive',hp:8,atk:'—',drop:'Шерсть, Баранина',biome:'Везде'},
+  {name:'Курица',id:'chicken',img:FW+'2/2c/Chicken_JE2_BE2.png/revision/latest',fb:'🐔',type:'passive',hp:4,atk:'—',drop:'Перья, Куриное мясо',biome:'Везде'},
+  {name:'Страйдер',id:'strider',img:FW+'1/12/Strider.png/revision/latest',fb:'🦎',type:'passive',hp:20,atk:'—',drop:'Нить',biome:'Незер'},
+  {name:'Лиса',id:'fox',img:FW+'7/73/Fox.png/revision/latest',fb:'🦊',type:'passive',hp:10,atk:'—',drop:'Ягоды',biome:'Тайга'},
+  {name:'Верблюд',id:'camel',img:FW+'0/09/Camel.png/revision/latest',fb:'🐪',type:'passive',hp:32,atk:'—',drop:'Кожа',biome:'Пустыня'},
+  {name:'Лягушка',id:'frog',img:FW+'1/17/Temperate_Frog_JE1_BE1.png/revision/latest',fb:'🐸',type:'passive',hp:10,atk:'—',drop:'Слизь лягушки',biome:'Болото'},
+  {name:'Аллай',id:'allay',img:FW+'a/a4/Allay_JE1_BE1.png/revision/latest',fb:'🔵',type:'passive',hp:20,atk:'—',drop:'—',biome:'Постройки'},
+  {name:'Броненосец',id:'armadillo',img:FW+'9/9f/Armadillo.png/revision/latest',fb:'🦔',type:'passive',hp:12,atk:'—',drop:'Чешуя броненосца',biome:'Саванна'},
+  {name:'Кот',id:'cat',img:FW+'7/73/Tuxedo_Cat_JE2_BE2.png/revision/latest',fb:'🐱',type:'passive',hp:10,atk:'—',drop:'Нить',biome:'Деревни'},
+  {name:'Попугай',id:'parrot',img:FW+'d/de/Red_Parrot.png/revision/latest',fb:'🦜',type:'passive',hp:6,atk:'—',drop:'Перья',biome:'Джунгли'},
+  {name:'Кролик',id:'rabbit',img:FW+'8/8d/Brown_Rabbit_JE2_BE2.png/revision/latest',fb:'🐰',type:'passive',hp:3,atk:'—',drop:'Кроличья шкурка, Мясо',biome:'Везде'},
+  {name:'Черепаха',id:'turtle',img:FW+'e/e9/Turtle.png/revision/latest',fb:'🐢',type:'passive',hp:30,atk:'—',drop:'Чешуя',biome:'Пляж'},
+  {name:'Кальмар',id:'squid',img:FW+'6/67/Squid_JE2_BE2.png/revision/latest',fb:'🦑',type:'passive',hp:10,atk:'—',drop:'Чернильный мешочек',biome:'Океан'},
+  {name:'Светящийся кальмар',id:'glow_squid',img:FW+'2/2a/Glow_Squid_JE1.png/revision/latest',fb:'💫',type:'passive',hp:10,atk:'—',drop:'Светящийся пигмент',biome:'Океан'},
+  {name:'Треска',id:'cod',img:FW+'4/41/Cod.png/revision/latest',fb:'🐟',type:'passive',hp:3,atk:'—',drop:'Сырая треска',biome:'Океан'},
+  {name:'Лосось',id:'salmon',img:FW+'e/e0/Salmon.png/revision/latest',fb:'🐠',type:'passive',hp:3,atk:'—',drop:'Сырой лосось',biome:'Река'},
+  {name:'Тропическая рыба',id:'tropical_fish',img:FW+'a/ad/Tropical_Fish_JE2_BE2.png/revision/latest',fb:'🐡',type:'passive',hp:3,atk:'—',drop:'Тропическая рыба',biome:'Океан'},
+  {name:'Иглобрюх',id:'pufferfish',img:FW+'0/02/Pufferfish_%28item%29_JE5_BE2.png/revision/latest',fb:'🐡',type:'passive',hp:3,atk:'7',drop:'Иглобрюх',biome:'Океан'},
+  {name:'Осёл',id:'donkey',img:FW+'9/95/Donkey.png/revision/latest',fb:'🫏',type:'passive',hp:15,atk:'—',drop:'Кожа',biome:'Равнины'},
+  {name:'Головастик',id:'tadpole',img:FW+'3/3a/Tadpole_JE1_BE1.png/revision/latest',fb:'🐟',type:'passive',hp:6,atk:'—',drop:'—',biome:'Болото'},
+  {name:'Грибная корова',id:'mooshroom',img:FW+'1/1c/Red_Mooshroom_JE4.png/revision/latest',fb:'🍄',type:'passive',hp:10,atk:'—',drop:'Говядина, Грибы',biome:'Грибной остров'},
+  {name:'Скелет-лошадь',id:'skeleton_horse',img:FW+'d/de/Skeleton_Horse.png/revision/latest',fb:'🐴',type:'passive',hp:15,atk:'—',drop:'Кости',biome:'Везде'},
+  {name:'Зомби-лошадь',id:'zombie_horse',img:FW+'1/1f/Zombie_Horse_Revision_3.png/revision/latest',fb:'🐴',type:'passive',hp:15,atk:'—',drop:'Гнилая плоть',biome:'—'},
+  {name:'Оцелот',id:'ocelot',img:FW+'0/0d/Ocelot.png/revision/latest',fb:'🐆',type:'passive',hp:10,atk:'—',drop:'—',biome:'Джунгли'},
+  // ── БОССЫ ───────────────────────────────────────────────────
+  {name:'Древний страж',id:'elder_guardian',img:FW+'a/a4/Elder_Guardian.png/revision/latest',fb:'👁️',type:'boss',hp:80,atk:'10',drop:'Мокрая губка, Сердце моря',biome:'Океан'},
 ];
 
 let mobFilter='all';
@@ -2674,7 +2663,7 @@ function filterMobs(){
   document.getElementById('mob-grid').innerHTML=uniq.map(m=>`
     <div class="mob-card" onclick="copyText('/summon minecraft:${m.id}')">
       <div class="mob-img">
-        <img src="${WIKI}${m.img}" alt="${m.name}"
+        <img src="${m.img}" alt="${m.name}"
           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span class="mob-fb" style="display:none">${m.fb}</span>
       </div>
@@ -2736,6 +2725,34 @@ const SOUNDS_DATA = [
   {id:'minecraft:entity.player.death',name:'Смерть игрока',cat:'player',icon:'💀',desc:'Звук смерти персонажа'},
   {id:'minecraft:entity.player.hurt',name:'Урон игроку',cat:'player',icon:'😣',desc:'Получение урона'},
   {id:'minecraft:entity.player.attack.sweep',name:'Круговой удар',cat:'player',icon:'⚔️',desc:'Рубящий удар мечом'},
+  {id:'minecraft:entity.cat.ambient',name:'Мяуканье кошки',cat:'mob',icon:'🐱',desc:'Кошка мяукает'},
+  {id:'minecraft:entity.wolf.ambient',name:'Звук волка',cat:'mob',icon:'🐺',desc:'Волк рычит'},
+  {id:'minecraft:entity.bee.sting',name:'Укус пчелы',cat:'mob',icon:'🐝',desc:'Пчела жалит'},
+  {id:'minecraft:entity.ender_dragon.flap',name:'Взмах крыльев дракона',cat:'mob',icon:'🐉',desc:'Взмах крыльев'},
+  {id:'minecraft:entity.warden.heartbeat',name:'Пульс хранителя',cat:'mob',icon:'🌑',desc:'Жуткий пульс'},
+  {id:'minecraft:entity.enderman.scream',name:'Крик эндермена',cat:'mob',icon:'🕴️',desc:'Страшный крик'},
+  {id:'minecraft:entity.zombie.break_wooden_door',name:'Зомби ломает дверь',cat:'mob',icon:'🧟',desc:'Удар по двери'},
+  {id:'minecraft:entity.horse.ambient',name:'Ржание лошади',cat:'mob',icon:'🐴',desc:'Лошадь ржёт'},
+  {id:'minecraft:entity.parrot.imitate.creeper',name:'Попугай имитирует крипера',cat:'mob',icon:'🦜',desc:'Пародия попугая'},
+  {id:'minecraft:entity.fox.ambient',name:'Звук лисы',cat:'mob',icon:'🦊',desc:'Лиса кричит ночью'},
+  {id:'minecraft:block.anvil.use',name:'Использование наковальни',cat:'block',icon:'⚒️',desc:'Удар по наковальне'},
+  {id:'minecraft:block.enchantment_table.use',name:'Стол зачарований',cat:'block',icon:'📚',desc:'Открытие стола зачарований'},
+  {id:'minecraft:block.brewing_stand.brew',name:'Зелье готово',cat:'block',icon:'🧪',desc:'Зелье сварено'},
+  {id:'minecraft:block.fire.ambient',name:'Треск огня',cat:'block',icon:'🔥',desc:'Атмосферный звук огня'},
+  {id:'minecraft:block.lava.ambient',name:'Лава бурлит',cat:'block',icon:'🌋',desc:'Бурление лавы'},
+  {id:'minecraft:block.portal.ambient',name:'Портал в Незер',cat:'block',icon:'🟣',desc:'Гул портала'},
+  {id:'minecraft:block.note_block.guitar',name:'Note Block (Гитара)',cat:'block',icon:'🎸',desc:'Нота гитары'},
+  {id:'minecraft:block.note_block.flute',name:'Note Block (Флейта)',cat:'block',icon:'🎵',desc:'Нота флейты'},
+  {id:'minecraft:item.crossbow.shoot',name:'Выстрел из арбалета',cat:'item',icon:'🏹',desc:'Стрела летит'},
+  {id:'minecraft:item.shield.block',name:'Блок щитом',cat:'item',icon:'🛡️',desc:'Отражение урона щитом'},
+  {id:'minecraft:item.bottle.fill',name:'Наполнение бутылки',cat:'item',icon:'🫙',desc:'Бутылка наполняется водой'},
+  {id:'minecraft:item.elytra.flying',name:'Полёт на элитрах',cat:'item',icon:'🪂',desc:'Свист элитр в полёте'},
+  {id:'minecraft:entity.player.splash',name:'Прыжок в воду',cat:'player',icon:'💦',desc:'Прыжок в водоём'},
+  {id:'minecraft:entity.player.attack.crit',name:'Крит. удар',cat:'player',icon:'⚡',desc:'Критический удар с прыжка'},
+  {id:'minecraft:music.menu',name:'Музыка главного меню',cat:'music',icon:'🎶',desc:'Трек на экране меню'},
+  {id:'minecraft:music.under_water',name:'Музыка под водой',cat:'music',icon:'🌊',desc:'Подводный эмбиент'},
+  {id:'minecraft:ambient.basalt_deltas.loop',name:'Базальтовые дельты',cat:'ambient',icon:'🌑',desc:'Фон вулканической зоны'},
+  {id:'minecraft:ambient.underwater.enter',name:'Погружение в воду',cat:'ambient',icon:'💧',desc:'Звук при погружении'},
 ];
 
 let sndFilter='all';
@@ -2770,33 +2787,54 @@ filterSnd();
 // ============================================================
 //  COMMANDS
 // ============================================================
-const COMMANDS_DATA = [
-  {icon:'🕹️',name:'Режим игры',desc:'Переключить режим игры для игрока',cmds:['/gamemode survival @s','/gamemode creative @s','/gamemode spectator @s','/gamemode adventure @s']},
-  {icon:'🕐',name:'Время суток',desc:'Установить время в мире',cmds:['/time set day','/time set night','/time set 6000','/time set 18000','/time query daytime']},
-  {icon:'🌦️',name:'Погода',desc:'Управление погодой на сервере',cmds:['/weather clear','/weather rain','/weather thunder','/weather clear 99999']},
-  {icon:'🌀',name:'Телепорт',desc:'Переместить игрока в нужное место',cmds:['/tp @s 0 64 0','/tp @a @s','/tp @s ~ ~100 ~','/teleport @s -200 70 350 0 0']},
-  {icon:'💡',name:'Дать опыт',desc:'Выдать опыт игроку',cmds:['/xp add @s 100 points','/xp add @s 10 levels','/xp set @s 0 levels']},
-  {icon:'🔪',name:'Убить сущности',desc:'Удалить сущности из мира',cmds:['/kill @e[type=item]','/kill @e[type=zombie]','/kill @e[type=!player]','/kill @a']},
-  {icon:'🎁',name:'Дать предмет',desc:'Выдать предмет игроку',cmds:['/give @s diamond 64','/give @s netherite_sword{Enchantments:[{id:sharpness,lvl:5}]}','/give @a golden_apple{display:{Name:"[\\"§6Яблоко\\"]"}}']},
-  {icon:'📡',name:'Сообщения',desc:'Отправить сообщения в чат',cmds:['/say Привет всем!','/tell @p Приватное сообщение','/title @a title {"text":"MinePedia","color":"green"}','/tellraw @a {"text":"Важное сообщение","color":"red","bold":true}']},
-  {icon:'🔒',name:'OP команды',desc:'Управление правами игроков',cmds:['/op НикИгрока','/deop НикИгрока','/ban НикИгрока Причина','/pardon НикИгрока','/kick НикИгрока Причина','/whitelist add НикИгрока']},
-  {icon:'📦',name:'Очистить инвентарь',desc:'Удалить предметы из инвентаря',cmds:['/clear @s','/clear @s diamond','/clear @a']},
-  {icon:'🏥',name:'Здоровье и еда',desc:'Восстановить здоровье и сытость',cmds:['/effect give @s instant_health 1 255','/effect give @s saturation 5 255','/effect give @s regeneration 30 10']},
-  {icon:'🎯',name:'Спавн мобов',desc:'Призвать мобов в нужном месте',cmds:['/summon zombie ~ ~ ~','/summon wither ~ ~100 ~','/summon ender_dragon ~ ~ ~','/summon lightning_bolt ~ ~ ~']},
-  {icon:'🌍',name:'Мир и чанки',desc:'Управление миром',cmds:['/setworldspawn 0 64 0','/spawnpoint @s ~ ~ ~','/forceload add -5 -5 5 5','/locate structure minecraft:village']},
-  {icon:'⏱️',name:'Таймер и счётчики',desc:'Счётчики и таймеры для игр',cmds:['/scoreboard objectives add kills playerKillCount','/scoreboard players set @s deaths 0','/execute if score @s kills matches 10.. run say Победитель!']},
-  {icon:'🔧',name:'Отладка сервера',desc:'Полезные команды для проверки',cmds:['/debug start','/debug stop','/datapack list','/perf start','/tick freeze']},
-  {icon:'🛒',name:'Очки игрока',desc:'Управление скорбордом',cmds:['/scoreboard objectives add score dummy "Очки"','/scoreboard objectives setdisplay sidebar score','/scoreboard players add @s score 1','/scoreboard players set @s score 0']},
+const SERVER_CMDS = [
+  {icon:'🔒',name:'OP и права',desc:'Управление правами игроков на сервере',cmds:['/op НикИгрока','/deop НикИгрока','/ban НикИгрока Причина','/pardon НикИгрока','/kick НикИгрока Причина','/whitelist add НикИгрока','/whitelist remove НикИгрока','/whitelist list']},
+  {icon:'📡',name:'Сообщения игрокам',desc:'Чат, титры и уведомления',cmds:['/say Привет всем!','/tell @p Приватное сообщение','/title @a title {"text":"MinePedia","color":"green"}','/title @a subtitle {"text":"Добро пожаловать!","color":"yellow"}','/tellraw @a {"text":"Важное сообщение","color":"red","bold":true}','/actionbar @a {"text":"Сообщение над инвентарём"}']},
+  {icon:'⏱️',name:'Счётчики и скорборды',desc:'Скорборды и события для мини-игр',cmds:['/scoreboard objectives add kills playerKillCount','/scoreboard objectives add deaths deathCount','/scoreboard objectives setdisplay sidebar kills','/scoreboard players add @s kills 1','/scoreboard players set @s deaths 0','/execute if score @s kills matches 10.. run say Победитель!']},
+  {icon:'🌍',name:'Мир и спавн',desc:'Управление миром и точкой возрождения',cmds:['/setworldspawn 0 64 0','/spawnpoint @s ~ ~ ~','/forceload add -5 -5 5 5','/forceload remove -5 -5 5 5','/locate structure minecraft:village','/locate biome minecraft:jungle']},
+  {icon:'🔧',name:'Отладка сервера',desc:'Диагностика и управление',cmds:['/debug start','/debug stop','/datapack list','/perf start','/tick freeze','/tick unfreeze','/tick rate 20']},
+  {icon:'📊',name:'Информация',desc:'Статус сервера и мира',cmds:['/list','/seed','/difficulty peaceful','/difficulty hard','/gamerule maxEntityCramming 24','/gamerule randomTickSpeed 3','/gamerule doMobSpawning true']},
+  {icon:'🛡️',name:'Защита и безопасность',desc:'Команды для защиты мира',cmds:['/gamerule pvp false','/gamerule doFireTick false','/gamerule mobGriefing false','/gamerule doDaylightCycle false','/gamerule doWeatherCycle false']},
+  {icon:'📦',name:'Управление чанками',desc:'Загрузка и чистка чанков',cmds:['/forceload add 0 0','/forceload query','/execute in minecraft:overworld run spreadplayers 0 0 10 100 false @a']},
+  {icon:'🎭',name:'Эффекты для всех',desc:'Массовые эффекты на сервере',cmds:['/effect give @a speed 30 2','/effect give @a night_vision 99999 1','/effect clear @a','/execute as @a run effect give @s saturation 5 255']},
+  {icon:'💥',name:'Мощные события',desc:'Взрывные команды для событий',cmds:['/summon tnt ~ ~ ~','/execute as @a at @s run summon lightning_bolt ~ ~ ~','/fill ~-5 ~-1 ~-5 ~5 ~-1 ~5 tnt','/particle minecraft:explosion_emitter ~ ~1 ~ 0 0 0 0 1']},
 ];
 
-const cmdsGrid=document.getElementById('cmds-grid');
-cmdsGrid.innerHTML=COMMANDS_DATA.map(c=>`
-  <div class="cmd-card">
-    <h4>${c.icon} ${c.name}</h4>
-    <p>${c.desc}</p>
-    ${c.cmds.map(cmd=>`<div class="cmd-block" onclick="copyCmd(this,'${cmd.replace(/'/g,"\\'")}')"><span>${cmd}</span></div>`).join('')}
-  </div>
-`).join('');
+const SURVIVAL_CMDS = [
+  {icon:'🕹️',name:'Режим игры',desc:'Переключение режима (нужны читы)',cmds:['/gamemode survival','/gamemode creative','/gamemode spectator','/gamemode adventure']},
+  {icon:'🕐',name:'Время суток',desc:'Установить время в мире',cmds:['/time set day','/time set night','/time set noon','/time set midnight','/time set 6000','/time add 6000','/time query daytime']},
+  {icon:'🌦️',name:'Погода',desc:'Управление погодой',cmds:['/weather clear','/weather rain','/weather thunder','/weather clear 99999']},
+  {icon:'🌀',name:'Телепорт',desc:'Переместиться куда угодно',cmds:['/tp @s 0 64 0','/tp @s ~ ~100 ~','/tp @s ~ ~ ~ 0 0','/teleport @s -200 70 350','/tp @s ~10 ~ ~']},
+  {icon:'💡',name:'Опыт и уровни',desc:'Добавить опыт персонажу',cmds:['/xp add @s 100 points','/xp add @s 10 levels','/xp set @s 30 levels','/xp set @s 0 levels']},
+  {icon:'🎁',name:'Дать предмет',desc:'Выдать предмет себе',cmds:['/give @s diamond 64','/give @s netherite_ingot 64','/give @s enchanted_golden_apple 16','/give @s elytra 1','/give @s totem_of_undying 16','/give @s nether_star 1','/give @s dragon_egg 1']},
+  {icon:'🏥',name:'Здоровье и еда',desc:'Восстановить состояние персонажа',cmds:['/effect give @s instant_health 1 255','/effect give @s saturation 5 255','/effect give @s regeneration 30 10','/effect give @s night_vision 99999 1','/effect give @s water_breathing 99999 1','/effect clear @s']},
+  {icon:'🦸',name:'Суперспособности',desc:'Крутые эффекты для выживания',cmds:['/effect give @s speed 99999 5','/effect give @s jump_boost 99999 10','/effect give @s strength 99999 5','/effect give @s resistance 99999 4','/effect give @s fire_resistance 99999 1','/effect give @s invisibility 99999 1']},
+  {icon:'🗺️',name:'Навигация и поиск',desc:'Найти нужные структуры',cmds:['/locate structure minecraft:village','/locate structure minecraft:stronghold','/locate structure minecraft:mineshaft','/locate structure minecraft:buried_treasure','/locate biome minecraft:mushroom_fields','/locate biome minecraft:deep_dark']},
+  {icon:'🎯',name:'Спавн мобов',desc:'Призвать мобов рядом с собой',cmds:['/summon minecraft:zombie ~ ~ ~','/summon minecraft:ender_dragon ~ ~5 ~','/summon minecraft:wither ~ ~5 ~','/summon minecraft:horse ~ ~ ~ {Tame:1b}','/summon minecraft:villager ~ ~ ~']},
+  {icon:'🛠️',name:'Зачарование',desc:'Зачаровать предмет в руке',cmds:['/enchant @s sharpness 5','/enchant @s unbreaking 3','/enchant @s mending 1','/enchant @s protection 4','/enchant @s fortune 3','/enchant @s silk_touch 1','/enchant @s infinity 1']},
+  {icon:'🏗️',name:'Строительство',desc:'Полезные команды для билда',cmds:['/fill ~-10 ~ ~-10 ~10 ~10 ~10 air','/fill ~-5 ~-1 ~-5 ~5 ~-1 ~5 minecraft:stone','/clone ~-5 ~ ~-5 ~5 ~10 ~5 ~20 ~ ~','/setblock ~ ~ ~ minecraft:chest{Items:[{id:diamond,Count:64b,Slot:0b}]}']},
+  {icon:'🌄',name:'Правила мира',desc:'Настройка одиночного мира',cmds:['/gamerule keepInventory true','/gamerule doMobSpawning true','/gamerule doDaylightCycle true','/gamerule naturalRegeneration true','/gamerule showDeathMessages false','/gamerule announceAdvancements false']},
+  {icon:'🔑',name:'Разблокировать рецепты',desc:'Открыть все рецепты крафта',cmds:['/recipe give @s *','/advancement grant @s everything','/advancement revoke @s everything','/trigger recipeUnlock set 1']},
+];
+
+let cmdTab = 'server';
+function setCmdTab(tab, btn) {
+  cmdTab = tab;
+  document.querySelectorAll('#sec-commands .fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCmds();
+}
+function renderCmds() {
+  const data = cmdTab === 'server' ? SERVER_CMDS : SURVIVAL_CMDS;
+  document.getElementById('cmds-grid').innerHTML = data.map(c => `
+    <div class="cmd-card">
+      <h4>${c.icon} ${c.name}</h4>
+      <p>${c.desc}</p>
+      ${c.cmds.map(cmd => `<div class="cmd-block" onclick="copyCmd(this,'${cmd.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')"><span>${cmd}</span></div>`).join('')}
+    </div>
+  `).join('');
+}
+renderCmds();
 
 function copyCmd(el, cmd){
   copyText(cmd);
@@ -3114,6 +3152,100 @@ const UNICODE_DATA=[
   {char:'½',code:'U+00BD',name:'Одна вторая',cat:'math'},
   {char:'¼',code:'U+00BC',name:'Одна четвёртая',cat:'math'},
   {char:'¾',code:'U+00BE',name:'Три четвёртых',cat:'math'},
+  {char:'∑',code:'U+2211',name:'Сумма',cat:'math'},
+  {char:'∫',code:'U+222B',name:'Интеграл',cat:'math'},
+  {char:'∂',code:'U+2202',name:'Частная производная',cat:'math'},
+  {char:'°',code:'U+00B0',name:'Градус',cat:'math'},
+  {char:'²',code:'U+00B2',name:'Степень 2',cat:'math'},
+  {char:'³',code:'U+00B3',name:'Степень 3',cat:'math'},
+  {char:'™',code:'U+2122',name:'Торговый знак',cat:'math'},
+  {char:'©',code:'U+00A9',name:'Авторское право',cat:'math'},
+  {char:'®',code:'U+00AE',name:'Зарегистрировано',cat:'math'},
+  {char:'№',code:'U+2116',name:'Номер',cat:'math'},
+  {char:'‰',code:'U+2030',name:'Промилле',cat:'math'},
+  {char:'≈',code:'U+2248',name:'Приблизительно',cat:'math'},
+  {char:'∓',code:'U+2213',name:'Минус-плюс',cat:'math'},
+  {char:'⬢',code:'U+2B22',name:'Шестиугольник заполн.',cat:'shapes'},
+  {char:'⬟',code:'U+2B1F',name:'Пятиугольник',cat:'shapes'},
+  {char:'⬛',code:'U+2B1B',name:'Квадрат крупный',cat:'shapes'},
+  {char:'⬜',code:'U+2B1C',name:'Квадрат пустой крупн.',cat:'shapes'},
+  {char:'▪',code:'U+25AA',name:'Квадрат малый',cat:'shapes'},
+  {char:'▫',code:'U+25AB',name:'Квадрат пустой мал.',cat:'shapes'},
+  {char:'◉',code:'U+25C9',name:'Цель / прицел',cat:'shapes'},
+  {char:'◈',code:'U+25C8',name:'Ромб в квадрате',cat:'shapes'},
+  {char:'▶',code:'U+25B6',name:'Треугольник вправо',cat:'shapes'},
+  {char:'◀',code:'U+25C0',name:'Треугольник влево',cat:'shapes'},
+  {char:'▷',code:'U+25B7',name:'Треугольник вправо пустой',cat:'shapes'},
+  {char:'◁',code:'U+25C1',name:'Треугольник влево пустой',cat:'shapes'},
+  {char:'▸',code:'U+25B8',name:'Треугольник вправо малый',cat:'shapes'},
+  {char:'◂',code:'U+25C2',name:'Треугольник влево малый',cat:'shapes'},
+  {char:'⚑',code:'U+2691',name:'Флаг чёрный',cat:'misc'},
+  {char:'⚐',code:'U+2690',name:'Флаг белый',cat:'misc'},
+  {char:'⚜',code:'U+269C',name:'Лилия',cat:'misc'},
+  {char:'☯',code:'U+262F',name:'Инь-Янь',cat:'misc'},
+  {char:'⚗',code:'U+2697',name:'Реторта',cat:'misc'},
+  {char:'⚕',code:'U+2695',name:'Посох Асклепия',cat:'misc'},
+  {char:'⚛',code:'U+269B',name:'Атом',cat:'misc'},
+  {char:'✿',code:'U+273F',name:'Цветок',cat:'misc'},
+  {char:'❋',code:'U+274B',name:'Звезда тяжёлая',cat:'misc'},
+  {char:'⚒',code:'U+2692',name:'Молот и кирка',cat:'misc'},
+  {char:'☮',code:'U+262E',name:'Знак мира',cat:'misc'},
+  {char:'☢',code:'U+2622',name:'Радиация',cat:'misc'},
+  {char:'☣',code:'U+2623',name:'Биоопасность',cat:'misc'},
+  {char:'↗',code:'U+2197',name:'Стрелка вправо-вверх',cat:'arrows'},
+  {char:'↘',code:'U+2198',name:'Стрелка вправо-вниз',cat:'arrows'},
+  {char:'↙',code:'U+2199',name:'Стрелка влево-вниз',cat:'arrows'},
+  {char:'↖',code:'U+2196',name:'Стрелка влево-вверх',cat:'arrows'},
+  {char:'↻',code:'U+21BB',name:'По часовой стрелке',cat:'arrows'},
+  {char:'↺',code:'U+21BA',name:'Против часовой',cat:'arrows'},
+  {char:'⟵',code:'U+27F5',name:'Длинная ←',cat:'arrows'},
+  {char:'⟶',code:'U+27F6',name:'Длинная →',cat:'arrows'},
+  {char:'⟷',code:'U+27F7',name:'Длинная ↔',cat:'arrows'},
+  {char:'⤴',code:'U+2934',name:'Загнутая вправо-вверх',cat:'arrows'},
+  {char:'⤵',code:'U+2935',name:'Загнутая вправо-вниз',cat:'arrows'},
+  {char:'↝',code:'U+219D',name:'Волнистая →',cat:'arrows'},
+  {char:'↜',code:'U+219C',name:'Волнистая ←',cat:'arrows'},
+  {char:'⇄',code:'U+21C4',name:'Двойная ⇄',cat:'arrows'},
+  {char:'⇅',code:'U+21C5',name:'Вверх-вниз пара',cat:'arrows'},
+  {char:'⚓',code:'U+2693',name:'Якорь',cat:'misc'},
+  {char:'⚖',code:'U+2696',name:'Весы',cat:'misc'},
+  {char:'⚙',code:'U+2699',name:'Шестерёнка',cat:'misc'},
+  {char:'♾',code:'U+267E',name:'Бесконечность',cat:'misc'},
+  {char:'⊞',code:'U+229E',name:'Квадрат плюс',cat:'shapes'},
+  {char:'⊟',code:'U+229F',name:'Квадрат минус',cat:'shapes'},
+  {char:'⊠',code:'U+22A0',name:'Квадрат крест',cat:'shapes'},
+  {char:'⊡',code:'U+22A1',name:'Квадрат точка',cat:'shapes'},
+  {char:'⬞',code:'U+2B1E',name:'Пятиугольник пустой',cat:'shapes'},
+  {char:'⬤',code:'U+2B24',name:'Чёрный круг',cat:'shapes'},
+  {char:'⧫',code:'U+29EB',name:'Ромб чёрный',cat:'shapes'},
+  {char:'⌘',code:'U+2318',name:'Команда',cat:'misc'},
+  {char:'⌚',code:'U+231A',name:'Часы',cat:'misc'},
+  {char:'⌛',code:'U+231B',name:'Песочные часы',cat:'misc'},
+  {char:'⌬',code:'U+232C',name:'Молекула',cat:'misc'},
+  {char:'⏎',code:'U+23CE',name:'Возврат каретки',cat:'misc'},
+  {char:'⏏',code:'U+23CF',name:'Извлечение',cat:'misc'},
+  {char:'⏩',code:'U+23E9',name:'Перемотка вперёд',cat:'arrows'},
+  {char:'⏪',code:'U+23EA',name:'Перемотка назад',cat:'arrows'},
+  {char:'⏫',code:'U+23EB',name:'Перемотка вверх',cat:'arrows'},
+  {char:'⏬',code:'U+23EC',name:'Перемотка вниз',cat:'arrows'},
+  {char:'⏭',code:'U+23ED',name:'Следующий трек',cat:'arrows'},
+  {char:'⏮',code:'U+23EE',name:'Предыдущий трек',cat:'arrows'},
+  {char:'⟰',code:'U+27F0',name:'Стрелки вверх',cat:'arrows'},
+  {char:'⟱',code:'U+27F1',name:'Стрелки вниз',cat:'arrows'},
+  {char:'⤶',code:'U+2936',name:'Стрелка вниз-влево',cat:'arrows'},
+  {char:'⤷',code:'U+2937',name:'Стрелка вниз-вправо',cat:'arrows'},
+  {char:'ℕ',code:'U+2115',name:'Натуральные числа',cat:'math'},
+  {char:'ℤ',code:'U+2124',name:'Целые числа',cat:'math'},
+  {char:'ℝ',code:'U+211D',name:'Вещественные числа',cat:'math'},
+  {char:'ℂ',code:'U+2102',name:'Комплексные числа',cat:'math'},
+  {char:'∅',code:'U+2205',name:'Пустое множество',cat:'math'},
+  {char:'∈',code:'U+2208',name:'Принадлежит',cat:'math'},
+  {char:'∉',code:'U+2209',name:'Не принадлежит',cat:'math'},
+  {char:'∩',code:'U+2229',name:'Пересечение',cat:'math'},
+  {char:'∪',code:'U+222A',name:'Объединение',cat:'math'},
+  {char:'∧',code:'U+2227',name:'Логическое И',cat:'math'},
+  {char:'∨',code:'U+2228',name:'Логическое ИЛИ',cat:'math'},
+  {char:'¬',code:'U+00AC',name:'Логическое НЕ',cat:'math'},
 ];
 
 const SPECIAL_DATA=[
@@ -3137,6 +3269,34 @@ const SPECIAL_DATA=[
   {char:'】',code:'U+3011',name:'Квадрат. скобка ]',hint:'Теги и метки'},
   {char:'「',code:'U+300C',name:'Угловая кавычка',hint:'Японский стиль'},
   {char:'」',code:'U+300D',name:'Угловая кавычка',hint:'Японский стиль'},
+  {char:'⚜',code:'U+269C',name:'Лилия герба',hint:'Герб / фракция / клан'},
+  {char:'⚑',code:'U+2691',name:'Флаг',hint:'Обозначение территории / рейда'},
+  {char:'▶',code:'U+25B6',name:'Старт / вперёд',hint:'Кнопка действия в меню'},
+  {char:'◀',code:'U+25C0',name:'Назад',hint:'Предыдущий пункт'},
+  {char:'⬆',code:'U+2B06',name:'Стрелка вверх',hint:'Повышение / подъём уровня'},
+  {char:'⬇',code:'U+2B07',name:'Стрелка вниз',hint:'Понижение / спуск'},
+  {char:'◉',code:'U+25C9',name:'Цель / прицел',hint:'Активный пункт выбора'},
+  {char:'⚒',code:'U+2692',name:'Молот и кирка',hint:'Строительство / шахты'},
+  {char:'※',code:'U+203B',name:'Примечание',hint:'Ссылка / важная сноска'},
+  {char:'〓',code:'U+3013',name:'Гета',hint:'Неизвестный символ / placeholder'},
+  {char:'°',code:'U+00B0',name:'Градус',hint:'Температура / координаты'},
+  {char:'⁂',code:'U+2042',name:'Три звезды',hint:'Разделитель / конец раздела'},
+  {char:'‽',code:'U+203D',name:'Интеробанг',hint:'Вопрос + восклицание'},
+  {char:'☯',code:'U+262F',name:'Инь-Янь',hint:'Баланс / мирный режим'},
+  {char:'⊕',code:'U+2295',name:'Плюс в круге',hint:'Добавить / особый пункт'},
+  {char:'⊗',code:'U+2297',name:'Крест в круге',hint:'Удалить / запрет'},
+  {char:'™',code:'U+2122',name:'Торговый знак',hint:'Названия / серверы'},
+  {char:'№',code:'U+2116',name:'Номер',hint:'Нумерация комнат / арен'},
+  {char:'⚓',code:'U+2693',name:'Якорь',hint:'Сервер / флот / морская тема'},
+  {char:'⚖',code:'U+2696',name:'Весы',hint:'Баланс / правила сервера'},
+  {char:'⌘',code:'U+2318',name:'Команда',hint:'Меню команд / горячие клавиши'},
+  {char:'⊕',code:'U+2295',name:'Плюс в круге',hint:'Добавить / особый пункт'},
+  {char:'❋',code:'U+274B',name:'Звезда тяжёлая',hint:'Украшение заголовков'},
+  {char:'⁂',code:'U+2042',name:'Три звезды',hint:'Разделитель разделов'},
+  {char:'‽',code:'U+203D',name:'Интеробанг',hint:'Удивление / вопрос'},
+  {char:'⊗',code:'U+2297',name:'Крест в круге',hint:'Удалить / запрет'},
+  {char:'♾',code:'U+267E',name:'Бесконечность',hint:'Вечные ресурсы / режим'},
+  {char:'⚗',code:'U+2697',name:'Реторта',hint:'Крафт зелий / химия'},
 ];
 
 let uniFilter='all';
@@ -3192,24 +3352,14 @@ const HEADS_DATA = [
   {name:'Свинья',player:'MHF_Pig',cat:'mob',desc:'Голова свиньи. Превращается в свинозомби при ударе молнией.',tags:['Пассивный','Везде'],id:2},
   {name:'Корова',player:'MHF_Cow',cat:'mob',desc:'Голова коровы. Источник кожи и говядины.',tags:['Пассивный','Везде'],id:3},
   {name:'Овца',player:'MHF_Sheep',cat:'mob',desc:'Голова овцы. Даёт шерсть разных цветов.',tags:['Пассивный','Везде'],id:4},
-  {name:'Крипер',player:'MHF_Creeper',cat:'mob',desc:'Голова крипера. Один из самых узнаваемых мобов Minecraft.',tags:['Враждебный','Взрывается'],id:5},
-  {name:'Скелет',player:'MHF_Skeleton',cat:'mob',desc:'Голова скелета. Использует лук и стрелы.',tags:['Враждебный','Незер'],id:6},
-  {name:'Зомби',player:'MHF_Zombie',cat:'mob',desc:'Голова зомби. Ходит медленно, горит на солнце.',tags:['Враждебный','Везде'],id:7},
-  {name:'Паук',player:'MHF_Spider',cat:'mob',desc:'Голова паука. Ночью враждебен, днём нейтрален.',tags:['Нейтральный','Везде'],id:8},
   {name:'Пещерный паук',player:'MHF_CaveSpider',cat:'mob',desc:'Меньше обычного паука, но ядовит. Спавнится в заброшенных шахтах.',tags:['Враждебный','Шахты'],id:9},
   {name:'Слизень',player:'MHF_Slime',cat:'mob',desc:'Голова слизня. При смерти делится на меньших слизней.',tags:['Враждебный','Болото'],id:10},
-  {name:'Ифрит',player:'MHF_Blaze',cat:'mob',desc:'Голова ифрита. Летает и бросает огненные шары. Живёт в крепостях Незера.',tags:['Враждебный','Незер'],id:11},
   {name:'Магм-куб',player:'MHF_LavaSlime',cat:'mob',desc:'Голова магм-куба — огненный аналог слизня из Незера.',tags:['Враждебный','Незер'],id:12},
-  {name:'Гаст',player:'MHF_Ghast',cat:'mob',desc:'Голова гаста. Огромный летающий моб из Незера.',tags:['Враждебный','Незер'],id:13},
   {name:'Кальмар',player:'MHF_Squid',cat:'mob',desc:'Голова кальмара. Плавает в воде, выпускает чернила.',tags:['Пассивный','Океан'],id:14},
   {name:'Вол. скелет',player:'MHF_WSkeleton',cat:'mob',desc:'Голова иссохшего скелета. Спавнится в Незере, атакует иссушением.',tags:['Враждебный','Незер'],id:15},
   {name:'Свинозомби',player:'MHF_PigZombie',cat:'mob',desc:'Голова зомби-пиглина. Нейтрален, но агрессивен в группе.',tags:['Нейтральный','Незер'],id:16},
   {name:'Мушрум',player:'MHF_Mooshroom',cat:'mob',desc:'Голова грибной коровы. Живёт только на грибных островах.',tags:['Пассивный','Грибной остров'],id:17},
   {name:'Оцелот',player:'MHF_Ocelot',cat:'mob',desc:'Голова оцелота. Пугает крипера, приручается рыбой.',tags:['Нейтральный','Джунгли'],id:18},
-  {name:'Железный голем',player:'MHF_Golem',cat:'mob',desc:'Голова железного голема. Защищает деревни от мобов.',tags:['Нейтральный','Деревни'],id:19},
-  {name:'Ведьма',player:'MHF_Witch',cat:'mob',desc:'Голова ведьмы. Бросает зелья, живёт в болотных хижинах.',tags:['Враждебный','Болото'],id:20},
-  {name:'Иссушитель',player:'MHF_Wither',cat:'mob',desc:'Голова иссушителя — одного из двух боссов Minecraft.',tags:['Босс','Незер'],id:21},
-  {name:'Эндермен',player:'MHF_Enderman',cat:'mob',desc:'Голова эндермена. Телепортируется, злится при взгляде в глаза.',tags:['Нейтральный','Везде'],id:22},
   {name:'Стив',player:'MHF_Steve',cat:'mob',desc:'Голова Стива — стандартного персонажа Minecraft.',tags:['Игрок','Классика'],id:23},
   {name:'Алекс',player:'MHF_Alex',cat:'mob',desc:'Голова Алекс — альтернативного скина игрока Minecraft.',tags:['Игрок','Классика'],id:24},
   {name:'Геробрин',player:'MHF_Herobrine',cat:'mob',desc:'Голова Геробрина — легендарного персонажа-мифа Minecraft.',tags:['Легенда','Миф'],id:25},
@@ -3248,6 +3398,31 @@ const HEADS_DATA = [
   {name:'Стрелка вниз',player:'MHF_ArrowDown',cat:'misc',desc:'Голова со стрелкой вниз.',tags:['Значок','Навигация'],id:73},
   {name:'Стрелка лево',player:'MHF_ArrowLeft',cat:'misc',desc:'Голова со стрелкой влево.',tags:['Значок','Навигация'],id:74},
   {name:'Стрелка право',player:'MHF_ArrowRight',cat:'misc',desc:'Голова со стрелкой вправо.',tags:['Значок','Навигация'],id:75},
+  // FAMOUS PLAYERS
+  {name:'Нотч',player:'Notch',cat:'misc',desc:'Голова Нотча — создателя Minecraft. Легендарный скин.',tags:['Легенда','Создатель'],id:80},
+  {name:'Jeb_',player:'jeb_',cat:'misc',desc:'Голова jeb_ — ведущего разработчика. Радужная овца easter egg.',tags:['Разработчик','Легенда'],id:81},
+  {name:'Dinnerbone',player:'Dinnerbone',cat:'misc',desc:'Голова Dinnerbone. Моб с этим именем отображается вверх ногами.',tags:['Разработчик','Перевёрнутый'],id:82},
+  {name:'Herobrine',player:'MHF_Herobrine',cat:'misc',desc:'Голова Геробрина — легендарного персонажа-мифа Minecraft.',tags:['Легенда','Миф'],id:83},
+  {name:'C418',player:'C418',cat:'misc',desc:'Голова C418 — автора музыки Minecraft. Создал Minecraft OST.',tags:['Музыка','Легенда'],id:84},
+  {name:'Грумм',player:'Grumm',cat:'misc',desc:'Разработчик Mojang. Моб с именем Grumm тоже ходит вверх ногами.',tags:['Разработчик','Перевёрнутый'],id:85},
+  // MORE MOB HEADS
+  {name:'Волк',player:'MHF_Wolf',cat:'mob',desc:'Голова волка. Приручается костями, охраняет хозяина.',tags:['Нейтральный','Тайга'],id:90},
+  {name:'Летучая мышь',player:'MHF_Bat',cat:'mob',desc:'Голова летучей мыши. Пассивный моб пещер.',tags:['Пассивный','Пещеры'],id:91},
+  {name:'Сильверфиш',player:'MHF_Silverfish',cat:'mob',desc:'Голова сильверфиша. Прячется в камне.',tags:['Враждебный','Горы'],id:92},
+  {name:'Эндермит',player:'MHF_Endermite',cat:'mob',desc:'Голова эндермита. Самый маленький враждебный моб.',tags:['Враждебный','Край'],id:93},
+  // MORE FOOD / NATURE
+  {name:'Уголь-блок',player:'MHF_CoalBlock',cat:'build',desc:'Голова в виде угольного блока. Отличное топливо.',tags:['Блок','Топливо'],id:100},
+  {name:'Нетерит-блок',player:'MHF_NetheriteBlock',cat:'build',desc:'Голова в виде блока незерита. Самый прочный материал.',tags:['Блок','Редкий'],id:101},
+  {name:'Редстоун-блок',player:'MHF_RedstoneBlock',cat:'build',desc:'Голова в виде редстоун-блока. Источник питания.',tags:['Блок','Редстоун'],id:102},
+  {name:'Лазурит-блок',player:'MHF_LapisBlock',cat:'build',desc:'Голова в виде лазуритового блока. Используется для зачарований.',tags:['Блок','Зачарование'],id:103},
+  // MORE DECO
+  {name:'Зелёный сундук',player:'MHF_EnderChest',cat:'deco',desc:'Голова в виде эндер-сундука. Общее хранилище.',tags:['Декор','Хранение'],id:110},
+  {name:'Книжн. полка',player:'MHF_Bookshelf',cat:'deco',desc:'Голова в виде книжной полки. Усиливает зачарования.',tags:['Декор','Зачарование'],id:111},
+  {name:'Тыквенный фонарь',player:'MHF_JackOLantern',cat:'deco',desc:'Голова в виде тыквенного фонаря. Светится в темноте.',tags:['Декор','Свет'],id:112},
+  {name:'Маяк',player:'MHF_Beacon',cat:'deco',desc:'Голова в виде маяка. Даёт эффекты в радиусе.',tags:['Декор','Постройка'],id:113},
+  // MORE NATURE
+  {name:'Тростник',player:'MHF_SugarCane',cat:'nature',desc:'Голова в виде сахарного тростника. Нужен для сахара и бумаги.',tags:['Природа','Ферма'],id:120},
+  {name:'Кактус (зелёный)',player:'MHF_Cactus2',cat:'nature',desc:'Второй вариант кактусной головы.',tags:['Природа','Пустыня'],id:121},
 ];
 
 const HEAD_CAT_NAMES={mob:'Моб',food:'Еда',nature:'Природа',build:'Постройки',deco:'Декор',misc:'Прочее'};
