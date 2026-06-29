@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
 <title>MinePedia — Всё о Minecraft в одном месте</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -2663,7 +2664,7 @@ function filterMobs(){
   document.getElementById('mob-grid').innerHTML=uniq.map(m=>`
     <div class="mob-card" onclick="copyText('/summon minecraft:${m.id}')">
       <div class="mob-img">
-        <img src="${m.img}" alt="${m.name}"
+        <img src="${m.img}" alt="${m.name}" referrerpolicy="no-referrer"
           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span class="mob-fb" style="display:none">${m.fb}</span>
       </div>
