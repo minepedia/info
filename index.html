@@ -1383,6 +1383,291 @@ body::before { opacity: 0.55 !important; }
 .skin-part-info { font-size: 0.84rem !important; }
 .skin-zoom-label { font-size: 0.82rem !important; }
 
+
+/* ======= AUTH MODAL ======= */
+.auth-overlay{
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(0,0,0,0.82);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity 0.3s;
+}
+.auth-overlay.open{opacity:1;pointer-events:all;}
+.auth-modal{
+  background:rgba(10,6,2,0.98);border:1px solid rgba(232,130,12,0.40);
+  border-radius:24px;padding:36px 32px;width:100%;max-width:420px;
+  box-shadow:0 24px 80px rgba(0,0,0,0.7);
+  animation:slideUp 0.35s ease;position:relative;
+}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.auth-close{
+  position:absolute;top:16px;right:20px;font-size:1.4rem;
+  background:none;border:none;color:var(--muted);cursor:pointer;
+  transition:color 0.2s;line-height:1;
+}
+.auth-close:hover{color:#fff;}
+.auth-logo{text-align:center;margin-bottom:24px;}
+.auth-logo-icon{font-size:2.2rem;display:block;margin-bottom:6px;}
+.auth-logo h2{font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:2px;}
+.auth-logo p{font-size:0.82rem;color:var(--muted);}
+.auth-tabs{display:flex;gap:0;margin-bottom:28px;background:rgba(6,3,0,0.80);border-radius:12px;padding:4px;}
+.auth-tab{
+  flex:1;padding:10px;border:none;background:none;
+  color:var(--muted);font-size:0.88rem;font-weight:700;
+  cursor:pointer;border-radius:9px;transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.auth-tab.active{background:rgba(232,130,12,0.22);color:#ffd060;}
+.auth-panel{display:none;}
+.auth-panel.active{display:block;}
+.auth-field{margin-bottom:16px;}
+.auth-field label{
+  display:block;font-size:0.75rem;font-weight:700;
+  color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px;
+}
+.auth-field input{
+  width:100%;background:rgba(6,3,0,0.90);border:1px solid rgba(232,130,12,0.28);
+  color:#fff;padding:12px 14px;border-radius:11px;font-size:0.92rem;
+  outline:none;transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.auth-field input:focus{border-color:rgba(255,185,60,0.65);box-shadow:0 0 0 3px rgba(232,130,12,0.12);}
+.auth-field input::placeholder{color:#6b4c2a;}
+.auth-btn{
+  width:100%;padding:13px;border-radius:12px;
+  background:linear-gradient(135deg,#e8820c,#d97706);
+  border:none;color:#0b0805;font-size:0.96rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;margin-top:4px;
+}
+.auth-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,130,12,0.4);}
+.auth-btn:active{transform:scale(0.98);}
+.auth-error{
+  color:#f87171;font-size:0.82rem;margin-top:10px;
+  background:rgba(239,68,68,0.10);border:1px solid rgba(239,68,68,0.25);
+  border-radius:8px;padding:9px 13px;display:none;
+}
+.auth-error.show{display:block;}
+.auth-success{
+  color:#4ade80;font-size:0.82rem;margin-top:10px;
+  background:rgba(74,222,128,0.10);border:1px solid rgba(74,222,128,0.25);
+  border-radius:8px;padding:9px 13px;display:none;
+}
+.auth-success.show{display:block;}
+.nav-auth-btn{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(232,130,12,0.15);border:1px solid rgba(232,130,12,0.35);
+  color:#ffd060;padding:8px 16px;border-radius:10px;
+  font-size:0.84rem;font-weight:700;cursor:pointer;
+  transition:all 0.2s;font-family:'Inter',sans-serif;white-space:nowrap;
+  flex-shrink:0;
+}
+.nav-auth-btn:hover{background:rgba(232,130,12,0.28);border-color:rgba(255,185,60,0.55);}
+.nav-user-menu{position:relative;display:inline-flex;}
+.nav-user-dropdown{
+  position:absolute;top:calc(100% + 8px);right:0;
+  background:rgba(10,6,2,0.98);border:1px solid rgba(232,130,12,0.32);
+  border-radius:14px;padding:8px;min-width:180px;
+  box-shadow:0 16px 48px rgba(0,0,0,0.6);
+  display:none;z-index:9999;
+}
+.nav-user-dropdown.open{display:block;}
+.nav-user-info{
+  padding:10px 12px 12px;border-bottom:1px solid rgba(232,130,12,0.15);margin-bottom:6px;
+}
+.nav-user-nick{font-weight:800;color:#fff;font-size:0.9rem;}
+.nav-user-email{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+.nav-dd-btn{
+  width:100%;text-align:left;padding:9px 12px;border-radius:8px;
+  background:none;border:none;color:var(--muted);font-size:0.83rem;
+  cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;font-weight:600;
+}
+.nav-dd-btn:hover{background:rgba(232,130,12,0.12);color:#fff;}
+.nav-dd-btn.danger:hover{background:rgba(239,68,68,0.12);color:#f87171;}
+
+/* ======= MONITORING SECTION ======= */
+.monitor-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0;}
+.monitor-tab{
+  padding:10px 20px;border-radius:11px;
+  border:1px solid rgba(232,130,12,0.25);
+  background:rgba(12,7,2,0.85);color:var(--muted);
+  font-size:0.88rem;font-weight:700;cursor:pointer;
+  transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.monitor-tab.active{background:rgba(232,130,12,0.20);border-color:rgba(255,185,60,0.55);color:#ffd060;}
+.monitor-tab:hover:not(.active){color:#fff;background:rgba(255,255,255,0.06);}
+.monitor-panel{display:none;animation:fadeIn 0.3s ease;}
+.monitor-panel.active{display:block;}
+
+.best-hero{
+  background:linear-gradient(135deg,rgba(232,130,12,0.12),rgba(180,83,9,0.06));
+  border:2px solid rgba(232,130,12,0.40);border-radius:20px;padding:28px;
+  margin-bottom:28px;position:relative;overflow:hidden;
+}
+.best-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 0% 50%,rgba(232,130,12,0.08),transparent 60%);
+  pointer-events:none;
+}
+.best-hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(232,130,12,0.22);border:1px solid rgba(255,185,60,0.45);
+  color:#ffd060;font-size:0.72rem;font-weight:800;
+  padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:16px;
+}
+.best-hero-top{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;}
+.best-hero-avatar{
+  width:72px;height:72px;border-radius:14px;flex-shrink:0;
+  background:rgba(232,130,12,0.15);border:2px solid rgba(232,130,12,0.35);
+  display:flex;align-items:center;justify-content:center;font-size:2rem;
+  image-rendering:pixelated;overflow:hidden;
+}
+.best-hero-avatar img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;}
+.best-hero-main{flex:1;min-width:200px;}
+.best-hero-name{font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:4px;letter-spacing:-0.3px;}
+.best-hero-ip{
+  font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:#fbbf24;
+  background:rgba(232,130,12,0.12);border:1px solid rgba(232,130,12,0.25);
+  display:inline-block;padding:4px 12px;border-radius:7px;margin-bottom:10px;
+  cursor:pointer;transition:background 0.2s;
+}
+.best-hero-ip:hover{background:rgba(232,130,12,0.22);}
+.best-hero-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.best-hero-tag{
+  font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:6px;
+  border:1px solid rgba(232,130,12,0.20);background:rgba(10,5,1,0.70);color:var(--muted);
+}
+.best-hero-tag.featured{background:rgba(232,130,12,0.18);color:#fbbf24;border-color:rgba(232,130,12,0.35);}
+.best-hero-desc{font-size:0.85rem;color:#e8d0a0;line-height:1.6;max-width:640px;margin-bottom:16px;}
+.best-hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+.best-meta-item{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(6,3,0,0.80);border:1px solid rgba(232,130,12,0.20);
+  border-radius:9px;padding:7px 12px;font-size:0.80rem;
+}
+.best-meta-item span{color:var(--muted);}
+.best-meta-item strong{color:#fff;}
+.best-hero-links{display:flex;gap:10px;flex-wrap:wrap;}
+.best-link-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 16px;border-radius:10px;font-size:0.82rem;font-weight:700;
+  border:1px solid rgba(232,130,12,0.30);background:rgba(232,130,12,0.12);
+  color:#ffd060;text-decoration:none;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.best-link-btn:hover{background:rgba(232,130,12,0.25);border-color:rgba(255,185,60,0.55);}
+.best-link-btn.primary{background:linear-gradient(135deg,#e8820c,#d97706);color:#0b0805;border-color:transparent;}
+.best-link-btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,130,12,0.4);}
+
+.srv-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+.srv-filter{
+  padding:7px 14px;border-radius:9px;border:1px solid rgba(232,130,12,0.22);
+  background:rgba(12,7,2,0.82);color:var(--muted);font-size:0.80rem;
+  font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.srv-filter.active{background:rgba(232,130,12,0.18);border-color:rgba(255,185,60,0.45);color:#ffd060;}
+.srv-filter:hover:not(.active){color:#fff;background:rgba(255,255,255,0.06);}
+.srv-search-wrap{position:relative;flex:1;min-width:180px;max-width:320px;margin-left:auto;}
+.srv-search-wrap input{
+  width:100%;background:rgba(6,3,0,0.88);border:1px solid rgba(232,130,12,0.25);
+  color:#fff;padding:9px 14px 9px 36px;border-radius:10px;font-size:0.86rem;
+  outline:none;transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.srv-search-wrap input:focus{border-color:rgba(255,185,60,0.55);}
+.srv-search-wrap::before{
+  content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);
+  font-size:0.85rem;pointer-events:none;
+}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.srv-card{
+  background:rgba(10,6,2,0.90);border:1px solid rgba(232,130,12,0.20);
+  border-radius:18px;padding:20px;transition:all 0.22s;cursor:default;position:relative;overflow:hidden;
+}
+.srv-card:hover{border-color:rgba(232,130,12,0.38);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.4);}
+.srv-card.pinned{
+  border-color:rgba(232,130,12,0.45);
+  background:linear-gradient(135deg,rgba(232,130,12,0.08),rgba(10,6,2,0.92));
+}
+.srv-card-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;}
+.srv-avatar{
+  width:52px;height:52px;border-radius:11px;flex-shrink:0;
+  background:rgba(232,130,12,0.12);border:1px solid rgba(232,130,12,0.25);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  image-rendering:pixelated;overflow:hidden;
+}
+.srv-avatar img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;}
+.srv-info{flex:1;min-width:0;}
+.srv-name{font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.srv-ip-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.srv-ip{
+  font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:#fbbf24;
+  background:rgba(232,130,12,0.10);border:1px solid rgba(232,130,12,0.20);
+  padding:3px 9px;border-radius:6px;cursor:pointer;transition:background 0.2s;
+}
+.srv-ip:hover{background:rgba(232,130,12,0.20);}
+.srv-version{font-size:0.68rem;font-weight:700;padding:2px 8px;border-radius:5px;background:rgba(180,83,9,0.15);color:#d97706;}
+.srv-type-badge{font-size:0.68rem;font-weight:700;padding:2px 8px;border-radius:5px;background:rgba(249,115,22,0.15);color:#fb923c;}
+.srv-pin-badge{
+  position:absolute;top:12px;right:12px;
+  background:linear-gradient(135deg,#e8820c,#d97706);
+  color:#0b0805;font-size:0.60rem;font-weight:800;
+  padding:3px 9px;border-radius:5px;text-transform:uppercase;letter-spacing:0.5px;
+}
+.srv-desc{font-size:0.80rem;color:#c8ae88;line-height:1.5;margin-bottom:12px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.srv-tags-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px;}
+.srv-tag{font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:5px;background:rgba(10,5,1,0.80);border:1px solid rgba(232,130,12,0.18);color:var(--muted);}
+.srv-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.srv-meta-small{font-size:0.72rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;}
+.srv-copy-btn{
+  background:rgba(232,130,12,0.14);border:1px solid rgba(232,130,12,0.28);
+  color:#ffd060;padding:7px 14px;border-radius:9px;font-size:0.78rem;font-weight:700;
+  cursor:pointer;transition:all 0.18s;font-family:'Inter',sans-serif;
+}
+.srv-copy-btn:hover{background:rgba(232,130,12,0.28);}
+.add-srv-card{
+  background:rgba(8,4,1,0.94);border:1px solid rgba(232,130,12,0.28);
+  border-radius:20px;padding:28px;margin-bottom:28px;
+}
+.add-srv-card h3{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.add-srv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:600px){.add-srv-grid{grid-template-columns:1fr;}}
+.add-srv-field{display:flex;flex-direction:column;gap:6px;}
+.add-srv-field.full{grid-column:1/-1;}
+.add-srv-field label{font-size:0.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;}
+.add-srv-field input,.add-srv-field select,.add-srv-field textarea{
+  background:rgba(5,2,0,0.92);border:1px solid rgba(232,130,12,0.25);
+  color:#fff;padding:10px 12px;border-radius:10px;font-size:0.88rem;
+  outline:none;transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.add-srv-field input:focus,.add-srv-field select:focus,.add-srv-field textarea:focus{border-color:rgba(255,185,60,0.60);}
+.add-srv-field input::placeholder,.add-srv-field textarea::placeholder{color:#6b4c2a;}
+.add-srv-field select option{background:#0d0804;color:#fff;}
+.add-srv-field textarea{resize:vertical;min-height:80px;line-height:1.5;}
+.add-srv-tags-check{display:flex;gap:8px;flex-wrap:wrap;margin-top:2px;}
+.add-srv-tag-chk{
+  padding:5px 12px;border-radius:7px;border:1px solid rgba(232,130,12,0.20);
+  background:rgba(10,5,1,0.75);color:var(--muted);font-size:0.78rem;font-weight:700;
+  cursor:pointer;transition:all 0.15s;user-select:none;
+}
+.add-srv-tag-chk.on{background:rgba(232,130,12,0.20);border-color:rgba(255,185,60,0.45);color:#ffd060;}
+.add-srv-submit{
+  margin-top:18px;padding:12px 28px;border-radius:12px;
+  background:linear-gradient(135deg,#e8820c,#d97706);
+  border:none;color:#0b0805;font-size:0.92rem;font-weight:800;
+  cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;
+}
+.add-srv-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,130,12,0.4);}
+.srv-login-notice{
+  background:rgba(232,130,12,0.08);border:1px solid rgba(232,130,12,0.25);
+  border-radius:14px;padding:20px 24px;margin-bottom:24px;
+  display:flex;align-items:center;gap:14px;
+}
+.srv-login-notice p{color:#e8d0a0;font-size:0.88rem;line-height:1.5;}
+.login-btn-inline{
+  flex-shrink:0;background:rgba(232,130,12,0.20);border:1px solid rgba(232,130,12,0.35);
+  color:#ffd060;padding:9px 16px;border-radius:9px;font-size:0.82rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;font-family:'Inter',sans-serif;white-space:nowrap;
+}
+.login-btn-inline:hover{background:rgba(232,130,12,0.32);}
+.no-servers{text-align:center;padding:60px 20px;color:var(--muted);font-size:0.95rem;}
+.srv-count-line{font-size:0.82rem;color:var(--muted);margin-bottom:16px;}
+
 </style>
 </head>
 <body>
@@ -1406,14 +1691,216 @@ body::before { opacity: 0.55 !important; }
     <button class="nav-link" data-sec="symbols" onclick="showSec('symbols',this)">🔣 Символы</button>
     <button class="nav-link" data-sec="heads" onclick="showSec('heads',this)">💀 Головы</button>
     <button class="nav-link" data-sec="mapart" onclick="showSec('mapart',this)">🗺️ Map Art</button>
+    <button class="nav-link" data-sec="monitoring" onclick="showSec('monitoring',this)">🖥️ Мониторинг</button>
   </div>
+  <div id="nav-auth-area" style="display:flex;align-items:center;gap:8px;margin-left:8px;flex-shrink:0;"><button class="nav-auth-btn" onclick="openAuth()">🔑 Войти</button></div>
   <div class="nav-search">
     <input type="text" placeholder="🔍 Поиск..." oninput="globalSearch(this.value)">
   </div>
 </nav>
 
+
+<!-- ======= AUTH MODAL ======= -->
+<div class="auth-overlay" id="authOverlay" onclick="if(event.target===this){event.stopPropagation();closeAuth();}">
+  <div class="auth-modal">
+    <button class="auth-close" onclick="closeAuth()">&#x2715;</button>
+    <div class="auth-logo">
+      <span class="auth-logo-icon">&#x26CF;&#xFE0F;</span>
+      <h2>MinePedia</h2>
+      <p>&#x412;&#x43E;&#x439;&#x434;&#x438; &#x438;&#x43B;&#x438; &#x441;&#x43E;&#x437;&#x434;&#x430;&#x439; &#x430;&#x43A;&#x43A;&#x430;&#x443;&#x43D;&#x442;</p>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login',this)">&#x412;&#x43E;&#x439;&#x442;&#x438;</button>
+      <button class="auth-tab" onclick="switchAuthTab('register',this)">&#x420;&#x435;&#x433;&#x438;&#x441;&#x442;&#x440;&#x430;&#x446;&#x438;&#x44F;</button>
+    </div>
+    <div class="auth-panel active" id="auth-login">
+      <div class="auth-field">
+        <label>&#x41D;&#x438;&#x43A;&#x43D;&#x435;&#x439;&#x43C; &#x438;&#x43B;&#x438; Email</label>
+        <input type="text" id="login-id" placeholder="&#x41D;&#x438;&#x43A; &#x438;&#x43B;&#x438; email" autocomplete="username">
+      </div>
+      <div class="auth-field">
+        <label>&#x41F;&#x430;&#x440;&#x43E;&#x43B;&#x44C;</label>
+        <input type="password" id="login-pass" placeholder="&#x41F;&#x430;&#x440;&#x43E;&#x43B;&#x44C;" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <div class="auth-error" id="login-err"></div>
+      <button class="auth-btn" onclick="doLogin()">&#x1F680; &#x412;&#x43E;&#x439;&#x442;&#x438;</button>
+    </div>
+    <div class="auth-panel" id="auth-register">
+      <div class="auth-field">
+        <label>&#x41D;&#x438;&#x43A;&#x43D;&#x435;&#x439;&#x43C;</label>
+        <input type="text" id="reg-nick" placeholder="&#x412;&#x430;&#x448; &#x43D;&#x438;&#x43A; (3&#x2013;20 &#x441;&#x438;&#x43C;&#x432;&#x43E;&#x43B;&#x43E;&#x432;)" autocomplete="nickname">
+      </div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="auth-field">
+        <label>&#x41F;&#x430;&#x440;&#x43E;&#x43B;&#x44C;</label>
+        <input type="password" id="reg-pass" placeholder="&#x41C;&#x438;&#x43D;&#x438;&#x43C;&#x443;&#x43C; 6 &#x441;&#x438;&#x43C;&#x432;&#x43E;&#x43B;&#x43E;&#x432;" autocomplete="new-password">
+      </div>
+      <div class="auth-field">
+        <label>&#x41F;&#x43E;&#x432;&#x442;&#x43E;&#x440;&#x438;&#x442;&#x44C; &#x43F;&#x430;&#x440;&#x43E;&#x43B;&#x44C;</label>
+        <input type="password" id="reg-pass2" placeholder="&#x41F;&#x43E;&#x432;&#x442;&#x43E;&#x440;&#x438;&#x442;&#x435; &#x43F;&#x430;&#x440;&#x43E;&#x43B;&#x44C;" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()">
+      </div>
+      <div class="auth-error" id="reg-err"></div>
+      <div class="auth-success" id="reg-ok"></div>
+      <button class="auth-btn" onclick="doRegister()">&#x2705; &#x421;&#x43E;&#x437;&#x434;&#x430;&#x442;&#x44C; &#x430;&#x43A;&#x43A;&#x430;&#x443;&#x43D;&#x442;</button>
+    </div>
+  </div>
+</div>
+
 <!-- NOTIFICATION -->
 <div class="notif" id="notif">✓ Скопировано!</div>
+
+
+<!-- ========================= MONITORING ========================= -->
+<div class="section" id="sec-monitoring">
+  <div class="sec-wrap">
+    <div class="sec-header">
+      <h1>&#x1F5A5;&#xFE0F; &#x41C;&#x43E;&#x43D;&#x438;&#x442;&#x43E;&#x440;&#x438;&#x43D;&#x433; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43E;&#x432;</h1>
+      <p>&#x41A;&#x430;&#x442;&#x430;&#x43B;&#x43E;&#x433; Minecraft &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43E;&#x432; &#x2014; &#x43B;&#x443;&#x447;&#x448;&#x438;&#x435;, &#x440;&#x435;&#x439;&#x442;&#x438;&#x43D;&#x433;&#x43E;&#x432;&#x44B;&#x435; &#x438; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x43B;&#x435;&#x43D;&#x43D;&#x44B;&#x435; &#x441;&#x43E;&#x43E;&#x431;&#x449;&#x435;&#x441;&#x442;&#x432;&#x43E;&#x43C;. &#x414;&#x43E;&#x431;&#x430;&#x432;&#x44C; &#x441;&#x432;&#x43E;&#x439; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440; &#x438; &#x43F;&#x440;&#x438;&#x432;&#x43B;&#x435;&#x43A;&#x438; &#x43D;&#x43E;&#x432;&#x44B;&#x445; &#x438;&#x433;&#x440;&#x43E;&#x43A;&#x43E;&#x432;!</p>
+    </div>
+    <div class="monitor-tabs">
+      <button class="monitor-tab active" onclick="switchMonTab('best',this)">&#x2B50; &#x41B;&#x443;&#x447;&#x448;&#x438;&#x435; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430;</button>
+      <button class="monitor-tab" onclick="switchMonTab('all',this)">&#x1F310; &#x412;&#x441;&#x435; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430;</button>
+      <button class="monitor-tab" onclick="switchMonTab('add',this)">&#x2795; &#x414;&#x43E;&#x431;&#x430;&#x432;&#x438;&#x442;&#x44C; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;</button>
+    </div>
+
+    <!-- BEST -->
+    <div class="monitor-panel active" id="mon-best" style="margin-top:24px;">
+      <div class="best-hero">
+        <div class="best-hero-badge">&#x2B50; &#x417;&#x430;&#x43A;&#x440;&#x435;&#x43F;&#x43B;&#x451;&#x43D;&#x43D;&#x44B;&#x439; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440; #1</div>
+        <div class="best-hero-top">
+          <div class="best-hero-avatar">
+            <img src="https://mc-heads.net/avatar/KozloCraft/72" onerror="this.parentElement.innerHTML='&#x1F410;'" alt="KozloCraft">
+          </div>
+          <div class="best-hero-main">
+            <div class="best-hero-name">KozloCraft</div>
+            <div class="best-hero-ip" onclick="copyTextMon('kozlocraft.join-mc.net')" title="&#x41D;&#x430;&#x436;&#x43C;&#x438; &#x2014; &#x441;&#x43A;&#x43E;&#x43F;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x442;&#x44C;">kozlocraft.join-mc.net &#x1F4CB;</div>
+            <div class="best-hero-tags">
+              <span class="best-hero-tag featured">&#x2694;&#xFE0F; &#x412;&#x44B;&#x436;&#x438;&#x432;&#x430;&#x43D;&#x438;&#x435;</span>
+              <span class="best-hero-tag featured">&#x1F3AD; &#x420;&#x41F;</span>
+              <span class="best-hero-tag featured">&#x1F492; &#x421;&#x432;&#x430;&#x434;&#x44C;&#x431;&#x44B;</span>
+              <span class="best-hero-tag featured">&#x1F4B0; &#x42D;&#x43A;&#x43E;&#x43D;&#x43E;&#x43C;&#x438;&#x43A;&#x430;</span>
+              <span class="best-hero-tag featured">&#x1F3EF; &#x41A;&#x43B;&#x430;&#x43D;&#x44B;</span>
+              <span class="best-hero-tag featured">&#x1F477; &#x420;&#x430;&#x431;&#x43E;&#x442;&#x44B;</span>
+              <span class="best-hero-tag featured">&#x1F6D2; &#x41C;&#x430;&#x433;&#x430;&#x437;&#x438;&#x43D;</span>
+              <span class="best-hero-tag">&#x1F1F7;&#x1F1FA; &#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x435;</span>
+            </div>
+          </div>
+        </div>
+        <div class="best-hero-desc">
+          &#x41D;&#x430; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440; &#x43C;&#x43E;&#x436;&#x435;&#x442; &#x437;&#x430;&#x439;&#x442;&#x438; &#x43A;&#x430;&#x436;&#x434;&#x44B;&#x439; &#x436;&#x435;&#x43B;&#x430;&#x44E;&#x449;&#x438;&#x439; &#x2014; &#x43C;&#x44B; &#x440;&#x430;&#x434;&#x44B; &#x43D;&#x43E;&#x432;&#x44B;&#x43C; &#x438;&#x433;&#x440;&#x43E;&#x43A;&#x430;&#x43C; &#x438; &#x434;&#x440;&#x443;&#x436;&#x435;&#x43B;&#x44E;&#x431;&#x43D;&#x43E;&#x43C;&#x443; &#x441;&#x43E;&#x43E;&#x431;&#x449;&#x435;&#x441;&#x442;&#x432;&#x443;.
+          &#x417;&#x434;&#x435;&#x441;&#x44C; &#x441;&#x43E;&#x447;&#x435;&#x442;&#x430;&#x44E;&#x442;&#x441;&#x44F; &#x43A;&#x43B;&#x430;&#x441;&#x441;&#x438;&#x447;&#x435;&#x441;&#x43A;&#x43E;&#x435; &#x432;&#x430;&#x43D;&#x438;&#x43B;&#x44C;&#x43D;&#x43E;&#x435; &#x432;&#x44B;&#x436;&#x438;&#x432;&#x430;&#x43D;&#x438;&#x435; &#x438; &#x44D;&#x43B;&#x435;&#x43C;&#x435;&#x43D;&#x442;&#x44B; &#x440;&#x43E;&#x43B;&#x435;&#x432;&#x43E;&#x439; &#x438;&#x433;&#x440;&#x44B;,
+          &#x43A;&#x43E;&#x442;&#x43E;&#x440;&#x44B;&#x435; &#x434;&#x435;&#x43B;&#x430;&#x44E;&#x442; &#x438;&#x433;&#x440;&#x43E;&#x432;&#x43E;&#x439; &#x43F;&#x440;&#x43E;&#x446;&#x435;&#x441;&#x441; &#x431;&#x43E;&#x43B;&#x435;&#x435; &#x438;&#x43D;&#x442;&#x435;&#x440;&#x435;&#x441;&#x43D;&#x44B;&#x43C; &#x438; &#x436;&#x438;&#x432;&#x44B;&#x43C;. &#x413;&#x43B;&#x430;&#x432;&#x43D;&#x43E;&#x435; &#x2014; &#x441;&#x43E;&#x431;&#x43B;&#x44E;&#x434;&#x430;&#x442;&#x44C; &#x43F;&#x440;&#x430;&#x432;&#x438;&#x43B;&#x430;.
+        </div>
+        <div class="best-hero-meta">
+          <div class="best-meta-item"><span>IP (Java):</span><strong onclick="copyTextMon('213.152.43.78:25814')" style="cursor:pointer;color:#fbbf24;">213.152.43.78:25814</strong></div>
+          <div class="best-meta-item"><span>IP (Bedrock):</span><strong onclick="copyTextMon('kozlocraft.survival-zone.com')" style="cursor:pointer;color:#fbbf24;">kozlocraft.survival-zone.com</strong></div>
+          <div class="best-meta-item"><span>Port (Bedrock):</span><strong>25827</strong></div>
+          <div class="best-meta-item"><span>&#x412;&#x435;&#x440;&#x441;&#x438;&#x44F; Java:</span><strong>1.21.11 Fabric</strong></div>
+          <div class="best-meta-item"><span>&#x412;&#x435;&#x440;&#x441;&#x438;&#x44F; Bedrock:</span><strong>1.21.131</strong></div>
+        </div>
+        <div class="best-hero-links">
+          <a class="best-link-btn primary" href="https://kozlocraft.github.io/server/" target="_blank" rel="noopener">&#x1F310; &#x421;&#x430;&#x439;&#x442;</a>
+          <a class="best-link-btn" href="https://t.me/kozlocraft" target="_blank" rel="noopener">&#x1F4F1; Telegram</a>
+          <button class="best-link-btn" onclick="copyTextMon('kozlocraft.join-mc.net')">&#x1F4CB; &#x421;&#x43A;&#x43E;&#x43F;&#x438;&#x440;&#x43E;&#x432;&#x430;&#x442;&#x44C; IP</button>
+        </div>
+      </div>
+      <div id="best-extra-list"></div>
+      <div id="best-empty" style="display:none;" class="no-servers">&#x414;&#x440;&#x443;&#x433;&#x438;&#x445; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43E;&#x432; &#x43F;&#x43E;&#x43A;&#x430; &#x43D;&#x435;&#x442;. &#x421;&#x442;&#x430;&#x43D;&#x44C; &#x43F;&#x435;&#x440;&#x432;&#x44B;&#x43C; &#x2014; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x44C; &#x441;&#x432;&#x43E;&#x439;!</div>
+    </div>
+
+    <!-- ALL SERVERS -->
+    <div class="monitor-panel" id="mon-all" style="margin-top:24px;">
+      <div class="srv-filters" id="srv-filters">
+        <button class="srv-filter active" data-type="all" onclick="filterServers('all',this)">&#x1F310; &#x412;&#x441;&#x435;</button>
+        <button class="srv-filter" data-type="survival" onclick="filterServers('survival',this)">&#x2694;&#xFE0F; &#x412;&#x44B;&#x436;&#x438;&#x432;&#x430;&#x43D;&#x438;&#x435;</button>
+        <button class="srv-filter" data-type="rp" onclick="filterServers('rp',this)">&#x1F3AD; &#x420;&#x41F;</button>
+        <button class="srv-filter" data-type="minigames" onclick="filterServers('minigames',this)">&#x1F3AE; &#x41C;&#x438;&#x43D;&#x438;-&#x438;&#x433;&#x440;&#x44B;</button>
+        <button class="srv-filter" data-type="creative" onclick="filterServers('creative',this)">&#x1F3D7;&#xFE0F; &#x422;&#x432;&#x43E;&#x440;&#x447;&#x435;&#x441;&#x43A;&#x438;&#x439;</button>
+        <button class="srv-filter" data-type="skyblock" onclick="filterServers('skyblock',this)">&#x1F3DD;&#xFE0F; SkyBlock</button>
+        <button class="srv-filter" data-type="pvp" onclick="filterServers('pvp',this)">&#x2694;&#xFE0F; PvP</button>
+        <button class="srv-filter" data-type="anarchy" onclick="filterServers('anarchy',this)">&#x1F480; &#x410;&#x43D;&#x430;&#x440;&#x445;&#x438;&#x44F;</button>
+        <div class="srv-search-wrap"><input type="text" placeholder="&#x41F;&#x43E;&#x438;&#x441;&#x43A;..." id="srv-search" oninput="filterServers(null,null)"></div>
+      </div>
+      <div class="srv-count-line" id="srv-count-line"></div>
+      <div class="srv-grid" id="srv-grid"></div>
+      <div class="no-servers" id="srv-no" style="display:none;">&#x421;&#x435;&#x440;&#x432;&#x435;&#x440;&#x43E;&#x432; &#x43D;&#x435; &#x43D;&#x430;&#x439;&#x434;&#x435;&#x43D;&#x43E;.</div>
+    </div>
+
+    <!-- ADD SERVER -->
+    <div class="monitor-panel" id="mon-add" style="margin-top:24px;">
+      <div class="srv-login-notice" id="srv-login-notice" style="display:none;">
+        <span style="font-size:1.6rem;">&#x1F512;</span>
+        <p>&#x427;&#x442;&#x43E;&#x431;&#x44B; &#x434;&#x43E;&#x431;&#x430;&#x432;&#x438;&#x442;&#x44C; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;, &#x43D;&#x443;&#x436;&#x43D;&#x43E; &#x432;&#x43E;&#x439;&#x442;&#x438; &#x432; &#x430;&#x43A;&#x43A;&#x430;&#x443;&#x43D;&#x442;.</p>
+        <button class="login-btn-inline" onclick="openAuth()">&#x412;&#x43E;&#x439;&#x442;&#x438; / &#x420;&#x435;&#x433;&#x438;&#x441;&#x442;&#x440;&#x430;&#x446;&#x438;&#x44F;</button>
+      </div>
+      <div class="add-srv-card" id="add-srv-form-wrap">
+        <h3>&#x2795; &#x414;&#x43E;&#x431;&#x430;&#x432;&#x438;&#x442;&#x44C; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440; &#x432; &#x43A;&#x430;&#x442;&#x430;&#x43B;&#x43E;&#x433;</h3>
+        <div class="add-srv-grid">
+          <div class="add-srv-field">
+            <label>&#x41D;&#x430;&#x437;&#x432;&#x430;&#x43D;&#x438;&#x435; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430; *</label>
+            <input type="text" id="asrv-name" placeholder="&#x41C;&#x43E;&#x439; &#x43A;&#x440;&#x443;&#x442;&#x43E;&#x439; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;" maxlength="50">
+          </div>
+          <div class="add-srv-field">
+            <label>IP &#x430;&#x434;&#x440;&#x435;&#x441; *</label>
+            <input type="text" id="asrv-ip" placeholder="play.myserver.ru" maxlength="80">
+          </div>
+          <div class="add-srv-field">
+            <label>&#x412;&#x435;&#x440;&#x441;&#x438;&#x44F; *</label>
+            <input type="text" id="asrv-version" placeholder="1.21.1, 1.20.4, ..." maxlength="30">
+          </div>
+          <div class="add-srv-field">
+            <label>&#x422;&#x438;&#x43F; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x430; *</label>
+            <select id="asrv-type">
+              <option value="survival">&#x2694;&#xFE0F; &#x412;&#x44B;&#x436;&#x438;&#x432;&#x430;&#x43D;&#x438;&#x435;</option>
+              <option value="rp">&#x1F3AD; &#x420;&#x41F; / &#x420;&#x43E;&#x43B;&#x435;&#x432;&#x43E;&#x439;</option>
+              <option value="minigames">&#x1F3AE; &#x41C;&#x438;&#x43D;&#x438;-&#x438;&#x433;&#x440;&#x44B;</option>
+              <option value="creative">&#x1F3D7;&#xFE0F; &#x422;&#x432;&#x43E;&#x440;&#x447;&#x435;&#x441;&#x43A;&#x438;&#x439;</option>
+              <option value="skyblock">&#x1F3DD;&#xFE0F; SkyBlock</option>
+              <option value="pvp">&#x2694;&#xFE0F; PvP</option>
+              <option value="anarchy">&#x1F480; &#x410;&#x43D;&#x430;&#x440;&#x445;&#x438;&#x44F;</option>
+              <option value="other">&#x1F310; &#x414;&#x440;&#x443;&#x433;&#x43E;&#x435;</option>
+            </select>
+          </div>
+          <div class="add-srv-field">
+            <label>&#x42F;&#x434;&#x440;&#x43E; / &#x41C;&#x43E;&#x434;&#x43B;&#x43E;&#x430;&#x434;&#x435;&#x440;</label>
+            <input type="text" id="asrv-core" placeholder="Fabric, Forge, Paper, Vanilla..." maxlength="40">
+          </div>
+          <div class="add-srv-field">
+            <label>&#x421;&#x430;&#x439;&#x442; / Discord / Telegram</label>
+            <input type="text" id="asrv-site" placeholder="https://..." maxlength="120">
+          </div>
+          <div class="add-srv-field full">
+            <label>&#x41E;&#x43F;&#x438;&#x441;&#x430;&#x43D;&#x438;&#x435; *</label>
+            <textarea id="asrv-desc" placeholder="&#x420;&#x430;&#x441;&#x441;&#x43A;&#x430;&#x436;&#x438; &#x43E; &#x441;&#x432;&#x43E;&#x451;&#x43C; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;&#x435;..." maxlength="500"></textarea>
+          </div>
+          <div class="add-srv-field full">
+            <label>&#x422;&#x435;&#x433;&#x438;</label>
+            <div class="add-srv-tags-check" id="asrv-tags">
+              <span class="add-srv-tag-chk" data-val="&#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x435;" onclick="toggleSrvTag(this)">&#x1F1F7;&#x1F1FA; &#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x435;</span>
+              <span class="add-srv-tag-chk" data-val="&#x42D;&#x43A;&#x43E;&#x43D;&#x43E;&#x43C;&#x438;&#x43A;&#x430;" onclick="toggleSrvTag(this)">&#x1F4B0; &#x42D;&#x43A;&#x43E;&#x43D;&#x43E;&#x43C;&#x438;&#x43A;&#x430;</span>
+              <span class="add-srv-tag-chk" data-val="&#x41A;&#x43B;&#x430;&#x43D;&#x44B;" onclick="toggleSrvTag(this)">&#x1F3EF; &#x41A;&#x43B;&#x430;&#x43D;&#x44B;</span>
+              <span class="add-srv-tag-chk" data-val="PvP" onclick="toggleSrvTag(this)">&#x2694;&#xFE0F; PvP</span>
+              <span class="add-srv-tag-chk" data-val="&#x41C;&#x430;&#x433;&#x430;&#x437;&#x438;&#x43D;" onclick="toggleSrvTag(this)">&#x1F6D2; &#x41C;&#x430;&#x433;&#x430;&#x437;&#x438;&#x43D;</span>
+              <span class="add-srv-tag-chk" data-val="&#x421;&#x432;&#x430;&#x434;&#x44C;&#x431;&#x44B;" onclick="toggleSrvTag(this)">&#x1F492; &#x421;&#x432;&#x430;&#x434;&#x44C;&#x431;&#x44B;</span>
+              <span class="add-srv-tag-chk" data-val="&#x420;&#x430;&#x431;&#x43E;&#x442;&#x44B;" onclick="toggleSrvTag(this)">&#x1F477; &#x420;&#x430;&#x431;&#x43E;&#x442;&#x44B;</span>
+              <span class="add-srv-tag-chk" data-val="&#x41F;&#x440;&#x438;&#x432;&#x430;&#x442;" onclick="toggleSrvTag(this)">&#x1F512; &#x41F;&#x440;&#x438;&#x432;&#x430;&#x442;</span>
+              <span class="add-srv-tag-chk" data-val="&#x41A;&#x432;&#x435;&#x441;&#x442;&#x44B;" onclick="toggleSrvTag(this)">&#x1F4DC; &#x41A;&#x432;&#x435;&#x441;&#x442;&#x44B;</span>
+              <span class="add-srv-tag-chk" data-val="&#x41C;&#x43E;&#x434;&#x44B;" onclick="toggleSrvTag(this)">&#x2699;&#xFE0F; &#x41C;&#x43E;&#x434;&#x44B;</span>
+              <span class="add-srv-tag-chk" data-val="&#x411;&#x435;&#x437; P2W" onclick="toggleSrvTag(this)">&#x1F91D; &#x411;&#x435;&#x437; P2W</span>
+              <span class="add-srv-tag-chk" data-val="18+" onclick="toggleSrvTag(this)">&#x1F51E; 18+</span>
+            </div>
+          </div>
+        </div>
+        <button class="add-srv-submit" onclick="submitServer()">&#x1F680; &#x414;&#x43E;&#x431;&#x430;&#x432;&#x438;&#x442;&#x44C; &#x441;&#x435;&#x440;&#x432;&#x435;&#x440;</button>
+        <div class="auth-error" id="asrv-err" style="display:none;"></div>
+        <div class="auth-success" id="asrv-ok" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ========================= HOME ========================= -->
 <div class="section active" id="sec-home">
@@ -4228,6 +4715,285 @@ function exportMapartTxt(){
 setupUpload();
 
 
+
+
+// ============================================================
+//  AUTH SYSTEM
+// ============================================================
+const AUTH_KEY='mp_users_v1', SESSION_KEY='mp_session_v1';
+function getUsers(){try{return JSON.parse(localStorage.getItem(AUTH_KEY)||'[]');}catch{return[];}}
+function saveUsers(u){localStorage.setItem(AUTH_KEY,JSON.stringify(u));}
+function getSession(){try{return JSON.parse(localStorage.getItem(SESSION_KEY)||'null');}catch{return null;}}
+function saveSession(s){localStorage.setItem(SESSION_KEY,JSON.stringify(s));}
+function clearSession(){localStorage.removeItem(SESSION_KEY);}
+function currentUser(){return getSession();}
+
+let _savedSection=null; // remember active section while modal is open
+function openAuth(){
+  // save which section is currently shown so we can restore it on close
+  const active=document.querySelector('.nav-link.active');
+  _savedSection=active?active.dataset.sec:null;
+  document.getElementById('authOverlay').classList.add('open');
+  ['login-id','login-pass'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  const er=document.getElementById('login-err');if(er)er.className='auth-error';
+}
+function closeAuth(){
+  const ov=document.getElementById('authOverlay');
+  ov.classList.remove('open');
+  // restore the section that was visible before the modal opened
+  if(_savedSection){
+    const btn=document.querySelector('.nav-link[data-sec="'+_savedSection+'"]');
+    if(btn) showSec(_savedSection,btn);
+  }
+}
+function switchAuthTab(tab,btn){
+  document.querySelectorAll('.auth-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.auth-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('auth-'+tab).classList.add('active');
+}
+function authErr(id,msg){const e=document.getElementById(id);e.textContent=msg;e.className='auth-error show';}
+function authOkMsg(id,msg){const e=document.getElementById(id);e.textContent=msg;e.className='auth-success show';}
+
+function doLogin(){
+  const id=document.getElementById('login-id').value.trim();
+  const pw=document.getElementById('login-pass').value;
+  const er=document.getElementById('login-err');er.className='auth-error';
+  if(!id||!pw){authErr('login-err','Заполни все поля');return;}
+  const users=getUsers();
+  const u=users.find(u=>u.nick.toLowerCase()===id.toLowerCase()||u.email.toLowerCase()===id.toLowerCase());
+  if(!u){authErr('login-err','Пользователь не найден');return;}
+  if(u.pass!==btoa(unescape(encodeURIComponent(pw)))){authErr('login-err','Неверный пароль');return;}
+  saveSession({nick:u.nick,email:u.email});
+  closeAuth();renderAuthBtn();renderSrvAddPanel();showNotifMsg('👋 Добро пожаловать, '+u.nick+'!');
+}
+
+function doRegister(){
+  const nick=document.getElementById('reg-nick').value.trim();
+  const email=document.getElementById('reg-email').value.trim().toLowerCase();
+  const pw=document.getElementById('reg-pass').value;
+  const pw2=document.getElementById('reg-pass2').value;
+  document.getElementById('reg-err').className='auth-error';
+  document.getElementById('reg-ok').className='auth-success';
+  if(!nick||!email||!pw||!pw2){authErr('reg-err','Заполни все поля');return;}
+  if(nick.length<3||nick.length>20){authErr('reg-err','Ник: 3–20 символов');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){authErr('reg-err','Некорректный email');return;}
+  if(pw.length<6){authErr('reg-err','Пароль: минимум 6 символов');return;}
+  if(pw!==pw2){authErr('reg-err','Пароли не совпадают');return;}
+  const users=getUsers();
+  if(users.find(u=>u.nick.toLowerCase()===nick.toLowerCase())){authErr('reg-err','Ник уже занят');return;}
+  if(users.find(u=>u.email===email)){authErr('reg-err','Email уже зарегистрирован');return;}
+  users.push({nick,email,pass:btoa(unescape(encodeURIComponent(pw))),reg:Date.now()});
+  saveUsers(users);saveSession({nick,email});
+  authOkMsg('reg-ok','✅ Аккаунт создан! Добро пожаловать, '+nick+'!');
+  setTimeout(()=>{closeAuth();renderAuthBtn();renderSrvAddPanel();},1200);
+}
+
+function doLogout(){clearSession();renderAuthBtn();renderSrvAddPanel();closeUserMenu();showNotifMsg('До свидания! 👋');}
+
+function renderAuthBtn(){
+  const container=document.getElementById('nav-auth-area');
+  const u=currentUser();
+  container.innerHTML='';
+  if(u){
+    // Build DOM nodes – never inject user text via innerHTML
+    const wrap=document.createElement('div');
+    wrap.className='nav-user-menu';wrap.id='nav-user-menu';
+
+    const btn=document.createElement('button');
+    btn.className='nav-auth-btn';
+    btn.onclick=toggleUserMenu;
+    btn.textContent='⛏️ '+u.nick+' ▾';
+
+    const dd=document.createElement('div');
+    dd.className='nav-user-dropdown';dd.id='nav-user-dropdown';
+
+    const info=document.createElement('div');info.className='nav-user-info';
+    const nickEl=document.createElement('div');nickEl.className='nav-user-nick';nickEl.textContent='⛏️ '+u.nick;
+    const emailEl=document.createElement('div');emailEl.className='nav-user-email';emailEl.textContent=u.email;
+    info.appendChild(nickEl);info.appendChild(emailEl);
+
+    const addBtn=document.createElement('button');addBtn.className='nav-dd-btn';addBtn.textContent='➕ Добавить сервер';
+    addBtn.onclick=function(){showSec('monitoring',null);setTimeout(()=>switchMonTab('add',document.querySelectorAll('.monitor-tab')[2]),50);closeUserMenu();};
+
+    const outBtn=document.createElement('button');outBtn.className='nav-dd-btn danger';outBtn.textContent='🚪 Выйти';
+    outBtn.onclick=doLogout;
+
+    dd.appendChild(info);dd.appendChild(addBtn);dd.appendChild(outBtn);
+    wrap.appendChild(btn);wrap.appendChild(dd);
+    container.appendChild(wrap);
+  } else {
+    const b=document.createElement('button');b.className='nav-auth-btn';b.textContent='🔑 Войти';b.onclick=openAuth;
+    container.appendChild(b);
+  }
+}
+function toggleUserMenu(){const dd=document.getElementById('nav-user-dropdown');if(dd)dd.classList.toggle('open');}
+function closeUserMenu(){const dd=document.getElementById('nav-user-dropdown');if(dd)dd.classList.remove('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('#nav-user-menu'))closeUserMenu();});
+
+function showNotifMsg(msg){
+  const n=document.getElementById('notif');
+  n.textContent=msg;n.classList.add('show');
+  clearTimeout(n._t);n._t=setTimeout(()=>n.classList.remove('show'),2400);
+}
+
+// ============================================================
+//  MONITORING
+// ============================================================
+const SRV_KEY='mp_servers_v1';
+let srvTypeFilter='all';
+
+const KOZLOCRAFT={
+  id:'__kozlocraft__',pinned:true,name:'KozloCraft',
+  ip:'kozlocraft.join-mc.net',ipFull:'213.152.43.78:25814',
+  version:'1.21.11',type:'survival',core:'Fabric',
+  site:'https://kozlocraft.github.io/server/',tg:'https://t.me/kozlocraft',
+  desc:'На сервер может зайти каждый желающий — мы рады новым игрокам и дружелюбному сообществу. Здесь сочетаются классическое ванильное выживание и элементы ролевой игры, которые делают игровой процесс более интересным и живым.',
+  tags:['Выживание','РП','Русские','Свадьбы','Экономика','Кланы','Работы','Магазин'],
+  addedBy:'Admin',addedAt:Date.now()-86400000*30
+};
+
+const TYPE_LABELS={survival:'⚔️ Выживание',rp:'🎭 РП',minigames:'🎮 Мини-игры',creative:'🏗️ Творческий',skyblock:'🏝️ SkyBlock',pvp:'⚔️ PvP',anarchy:'💀 Анархия',other:'🌐 Другое'};
+
+function getUserServers(){try{return JSON.parse(localStorage.getItem(SRV_KEY)||'[]');}catch{return[];}}
+function saveUserServers(s){localStorage.setItem(SRV_KEY,JSON.stringify(s));}
+function getAllServers(){return[KOZLOCRAFT,...getUserServers()];}
+
+function switchMonTab(tab,btn){
+  document.querySelectorAll('.monitor-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.monitor-panel').forEach(p=>p.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  else{const idx={best:0,all:1,add:2}[tab];document.querySelectorAll('.monitor-tab')[idx].classList.add('active');}
+  document.getElementById('mon-'+tab).classList.add('active');
+  if(tab==='all')renderAllServers();
+  if(tab==='add')renderSrvAddPanel();
+  if(tab==='best')renderBestExtra();
+}
+
+function copyTextMon(t){
+  navigator.clipboard.writeText(t).catch(()=>{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();});
+  showNotifMsg('📋 Скопировано: '+t);
+}
+
+function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+// Store copy IP targets via data attributes – no inline JS interpolation
+document.addEventListener('click',function(e){
+  const btn=e.target.closest('[data-copy-ip]');
+  if(btn){copyTextMon(btn.dataset.copyIp);}
+});
+
+function srvCardHTML(s){
+  const pin=s.pinned?'<div class="srv-pin-badge">⭐ Топ</div>':'';
+  const av=s.pinned
+    ?'<img src="https://mc-heads.net/avatar/KozloCraft/52" onerror="this.parentElement.innerHTML=\'🐐\'" alt="">'
+    :'<span style="font-size:1.4rem;">'+(TYPE_LABELS[s.type]||'🌐').slice(0,2)+'</span>';
+  const tags=(s.tags||[]).map(t=>`<span class="srv-tag">${escH(t)}</span>`).join('');
+  const tl=TYPE_LABELS[s.type]||s.type;
+  const site=s.site?`<a href="${escH(s.site)}" target="_blank" rel="noopener" class="srv-copy-btn" style="text-decoration:none;">🌐 Сайт</a>`:'';
+  const tg=s.tg?`<a href="${escH(s.tg)}" target="_blank" rel="noopener" class="srv-copy-btn" style="text-decoration:none;">📱 TG</a>`:'';
+  const dt=new Date(s.addedAt).toLocaleDateString('ru-RU');
+  // data-copy-ip used by delegated listener – no inline JS with user strings
+  return `<div class="srv-card ${s.pinned?'pinned':''}">
+    ${pin}
+    <div class="srv-card-top">
+      <div class="srv-avatar">${av}</div>
+      <div class="srv-info">
+        <div class="srv-name">${escH(s.name)}</div>
+        <div class="srv-ip-row">
+          <span class="srv-ip" data-copy-ip="${escH(s.ip)}" style="cursor:pointer;">${escH(s.ip)} 📋</span>
+          <span class="srv-version">${escH(s.version||'')}</span>
+          <span class="srv-type-badge">${tl}</span>
+        </div>
+      </div>
+    </div>
+    <div class="srv-desc">${escH(s.desc||'')}</div>
+    <div class="srv-tags-row">${tags}</div>
+    <div class="srv-bottom">
+      <div class="srv-meta-small">
+        ${s.core?'<span>⚙️ '+escH(s.core)+'</span>':''}
+        <span>📅 ${dt}</span>
+        ${s.addedBy?'<span>👤 '+escH(s.addedBy)+'</span>':''}
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        ${site}${tg}
+        <button class="srv-copy-btn" data-copy-ip="${escH(s.ip)}">📋 IP</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderAllServers(){
+  const q=(document.getElementById('srv-search')||{value:''}).value.toLowerCase();
+  let list=getAllServers().filter(s=>{
+    const ok=srvTypeFilter==='all'||s.type===srvTypeFilter;
+    const qok=!q||s.name.toLowerCase().includes(q)||(s.ip||'').toLowerCase().includes(q)||(s.desc||'').toLowerCase().includes(q)||(s.tags||[]).some(t=>t.toLowerCase().includes(q));
+    return ok&&qok;
+  });
+  const grid=document.getElementById('srv-grid');
+  const noEl=document.getElementById('srv-no');
+  const cnt=document.getElementById('srv-count-line');
+  if(!grid)return;
+  if(list.length===0){grid.innerHTML='';noEl.style.display='block';cnt.textContent='Ничего не найдено';}
+  else{grid.innerHTML=list.map(srvCardHTML).join('');noEl.style.display='none';cnt.textContent='Серверов: '+list.length;}
+}
+
+function filterServers(type,btn){
+  if(type!==null)srvTypeFilter=type;
+  document.querySelectorAll('.srv-filter').forEach(b=>b.classList.remove('active'));
+  const ab=btn||document.querySelector('.srv-filter[data-type="'+srvTypeFilter+'"]');
+  if(ab)ab.classList.add('active');
+  renderAllServers();
+}
+
+function renderBestExtra(){
+  const list=getUserServers().slice().sort((a,b)=>(b.votes||0)-(a.votes||0)).slice(0,6);
+  const el=document.getElementById('best-extra-list');
+  const em=document.getElementById('best-empty');
+  if(!el)return;
+  if(list.length===0){el.innerHTML='';if(em)em.style.display='block';return;}
+  if(em)em.style.display='none';
+  el.innerHTML='<h3 style="font-size:1rem;font-weight:800;color:#fff;margin:24px 0 16px;opacity:0.7;">Другие серверы из каталога</h3><div class="srv-grid">'+list.map(srvCardHTML).join('')+'</div>';
+}
+
+function renderSrvAddPanel(){
+  const u=currentUser();
+  const notice=document.getElementById('srv-login-notice');
+  const form=document.getElementById('add-srv-form-wrap');
+  if(!notice||!form)return;
+  if(u){notice.style.display='none';form.style.display='block';}
+  else{notice.style.display='flex';form.style.display='none';}
+}
+
+function toggleSrvTag(el){el.classList.toggle('on');}
+
+function submitServer(){
+  const u=currentUser();
+  if(!u){openAuth();return;}
+  const name=(document.getElementById('asrv-name').value||'').trim();
+  const ip=(document.getElementById('asrv-ip').value||'').trim();
+  const ver=(document.getElementById('asrv-version').value||'').trim();
+  const type=document.getElementById('asrv-type').value;
+  const desc=(document.getElementById('asrv-desc').value||'').trim();
+  const core=(document.getElementById('asrv-core').value||'').trim();
+  const site=(document.getElementById('asrv-site').value||'').trim();
+  const errEl=document.getElementById('asrv-err');
+  const okEl=document.getElementById('asrv-ok');
+  errEl.className='auth-error';okEl.className='auth-success';
+  if(!name||!ip||!ver||!desc){errEl.textContent='Заполни обязательные поля (*)';errEl.className='auth-error show';return;}
+  if(name.length<2){errEl.textContent='Название слишком короткое';errEl.className='auth-error show';return;}
+  const tags=[...document.querySelectorAll('.add-srv-tag-chk.on')].map(el=>el.dataset.val);
+  const servers=getUserServers();
+  servers.push({id:'srv_'+Date.now(),name,ip,ipFull:ip,version:ver,type,core,site,tg:'',desc,tags,addedBy:u.nick,addedAt:Date.now(),votes:0});
+  saveUserServers(servers);
+  okEl.textContent='✅ Сервер добавлен! Он появится в разделе «Все серверы».';
+  okEl.className='auth-success show';
+  ['asrv-name','asrv-ip','asrv-version','asrv-core','asrv-site','asrv-desc'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  document.querySelectorAll('.add-srv-tag-chk.on').forEach(el=>el.classList.remove('on'));
+  document.getElementById('asrv-type').value='survival';
+}
+
+renderAuthBtn();
+renderSrvAddPanel();
 
 </script>
 </body>
